@@ -5,9 +5,29 @@
     xmlns:local="using:ProjectProposal"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="OnLoad">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="_grid" >
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="0"/>
+                <GradientStop Color="Yellow" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="118" Margin="165,91,0,0" TextWrapping="Wrap" Text="The Adventures of Hoothoot" VerticalAlignment="Top" Width="959" FontSize="72" TextAlignment="Center"/>
+        <Button x:Name="_btnChangeBackground" Content="Change Background" HorizontalAlignment="Left" Height="65" Margin="415,261,0,0" VerticalAlignment="Top" Width="439" Click="OnChangeBackground"/>
+        <Button x:Name="_btnSelectDifficulty" Content="Select Difficulty" HorizontalAlignment="Left" Height="65" Margin="405,368,0,0" VerticalAlignment="Top" Width="439" Click="OnSelectDifficulty"/>
+        <Button x:Name="_btnStartGame" Content="Start Game" HorizontalAlignment="Left" Height="65" Margin="412,471,0,0" VerticalAlignment="Top" Width="439" Click="NextPage_Click"/>
+        <Button x:Name="_btnExitGame" Content="Exit Game" HorizontalAlignment="Left" Height="64" Margin="413,574,0,0" VerticalAlignment="Top" Width="448" Click="_btnExitGame_Click"/>
+        <Button x:Name="_btnEasy" Content="Easy" HorizontalAlignment="Left" Height="63" Margin="336,368,0,0" VerticalAlignment="Top" Width="161" Click="OnEasy"/>
+        <Button x:Name="_btnNormal" Content="Normal" HorizontalAlignment="Left" Height="63" Margin="563,367,0,0" VerticalAlignment="Top" Width="161" Click="OnNormal"/>
+        <Button x:Name="_btnHard" Content="Hard" HorizontalAlignment="Left" Height="63" Margin="786,370,0,0" VerticalAlignment="Top" Width="161" Click="OnHard"/>
+        <Button x:Name="_btnBackground1" Content="1" HorizontalAlignment="Left" Height="55" Margin="316,264,0,0" VerticalAlignment="Top" Width="72" Click="OnBackground1"/>
+        <Button x:Name="_btnBackground2" Content="2" HorizontalAlignment="Left" Height="55" Margin="450,266,0,0" VerticalAlignment="Top" Width="72" Click="OnBackground2"/>
+        <Button x:Name="_btnBackground3" Content="3" HorizontalAlignment="Left" Height="55" Margin="604,268,0,0" VerticalAlignment="Top" Width="72" Click="OnBackground3"/>
+        <Button x:Name="_btnBackground4" Content="4" HorizontalAlignment="Left" Height="55" Margin="753,266,0,0" VerticalAlignment="Top" Width="72" Click="OnBackground4"/>
+        <Button x:Name="_btnBackground5" Content="5" HorizontalAlignment="Left" Height="55" Margin="896,266,0,0" VerticalAlignment="Top" Width="72" Click="OnBackground5"/>
 
     </Grid>
 </Page>
