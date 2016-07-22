@@ -14,15 +14,16 @@ namespace ProjectProposal
     {
         private LinearGradientBrush _colour;
 
-        private int _mapSize;
+        private double _mapSize;
 
-        
+        private Rectangle _mapBackground;
 
-        public Map(int mapSize)
+        public Map(double mapSize, Rectangle mapBackground)
         {
             
             _mapSize = mapSize;
-            
+
+            _mapBackground = mapBackground;
 
             _colour = MainPage.s_colour;
         }
@@ -35,13 +36,16 @@ namespace ProjectProposal
             }
         }
 
-        public int mapSize
+        public double mapSize
         {
             get
             {
+                _mapSize = _mapBackground.ActualWidth;
                 return _mapSize;
             }
         }
+
+        
        
 
     }

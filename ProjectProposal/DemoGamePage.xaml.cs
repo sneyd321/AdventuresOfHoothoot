@@ -34,7 +34,7 @@ namespace ProjectProposal
 
             _game = new Game(_progressBar, _mapBackground);
 
-            _map = new Map(0);
+            _map = new Map(0, null);
         }
 
         
