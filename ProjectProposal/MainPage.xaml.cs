@@ -41,7 +41,7 @@ namespace ProjectProposal
             _difficulty = new Difficulty();
 
             
-
+        
 
             DefaultBackground();
 

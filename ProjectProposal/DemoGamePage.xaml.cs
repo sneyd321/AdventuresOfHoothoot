@@ -49,8 +49,8 @@ namespace ProjectProposal
         private void OnLoad(object sender, RoutedEventArgs e)
         {
             //_progressBar.Visibility = Visibility.Collapsed;
-            _mapBackground.Fill = MainPage.s_colour
-                ;
+            _mapBackground.Fill = MainPage.s_colour;
+               
             _game.StartTimer(sender, e);
 
         }
