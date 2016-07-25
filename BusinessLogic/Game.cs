@@ -39,7 +39,7 @@ namespace ProjectProposal
 
             _difficulty = Difficulty.s_mapSpeed;
 
-            _map = new Map(-3000, _mapBackground);
+            _map = new Map(-3000);
         }
 
 
@@ -47,9 +47,9 @@ namespace ProjectProposal
         {
             //Future Parameters
             int difficulty = _difficulty;
-            int stopPoint = -3000;
+            int mapLength = _map.mapSize;
 
-            double divider = (stopPoint * -1) / difficulty;
+            double divider = (mapLength * -1) / difficulty;
 
 
 
@@ -60,7 +60,7 @@ namespace ProjectProposal
             double currentPosistion = Canvas.GetLeft(_mapBackground);
 
 
-            if (currentPosistion <= stopPoint)
+            if (currentPosistion <= mapLength)
             {
 
                 _tmRaceTimer.Stop();

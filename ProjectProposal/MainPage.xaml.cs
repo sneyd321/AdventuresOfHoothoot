@@ -40,7 +40,6 @@ namespace ProjectProposal
             _difficulty = new Difficulty();
 
             DefaultBackground();
-            _difficulty.OnDifficultySelected();
 
         }
         private void OnLoad(object sender, RoutedEventArgs e)
