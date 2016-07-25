@@ -7,6 +7,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
+using ProjectProposal;
+using LogicTier;
 
 namespace ProjectProposal
 {
@@ -25,7 +27,10 @@ namespace ProjectProposal
 
             _mapBackground = mapBackground;
 
-            _colour = MainPage.s_colour;
+            
+
+            
+
         }
 
         public LinearGradientBrush Colour

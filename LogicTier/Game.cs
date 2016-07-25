@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI;
 using Windows.Media;
 using Windows.UI.Xaml.Shapes;
+using ProjectProposal;
+using LogicTier;
 
 
 

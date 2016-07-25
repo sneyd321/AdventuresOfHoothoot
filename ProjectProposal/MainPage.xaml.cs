@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI;
 using Windows.Media;
 using ProjectProposal;
+using LogicTier;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -38,6 +39,8 @@ namespace ProjectProposal
             this.InitializeComponent();
 
             _difficulty = new Difficulty();
+
+            
 
             DefaultBackground();
 

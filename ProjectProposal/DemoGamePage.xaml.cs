@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using LogicTier;
+
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -36,7 +38,9 @@ namespace ProjectProposal
 
             _game = new Game(_progressBar, _mapBackground);
 
-            _map = new Map(0);
+            _map = new Map(0, _mapBackground);
+
+            
         }
 
         
@@ -45,7 +49,7 @@ namespace ProjectProposal
         private void OnLoad(object sender, RoutedEventArgs e)
         {
             //_progressBar.Visibility = Visibility.Collapsed;
-            _mapBackground.Fill = _map.Colour;
+            _mapBackground.Fill = MainPage.s_colour;
             _game.StartTimer(sender, e);
 
         }
