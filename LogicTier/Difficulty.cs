@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LogicTier;
 
+
 namespace ProjectProposal
 {
     public class Difficulty
