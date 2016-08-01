@@ -13,7 +13,12 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Windows;
 using LogicTier;
+using Windows.UI.Xaml.Shapes;
+
+
+
 
 
 
@@ -30,17 +35,20 @@ namespace ProjectProposal
 
         private Game _game;
 
-        private Map _map;
+        public static List<Obsticle> _obsticleOnTopList;
+
+        public static List<Obsticle> _obsticleOnBottomList;
+
 
         public DemoGamePage()
         {
             this.InitializeComponent();
 
-            _game = new Game(_progressBar, _mapBackground);
+            _game = new Game(_progressBar, _mapBackground, _canvas, testHoothoot);
 
-            _map = new Map(0, _mapBackground);
 
-            
+
+           
         }
 
         
@@ -50,19 +58,37 @@ namespace ProjectProposal
         {
             //_progressBar.Visibility = Visibility.Collapsed;
             _mapBackground.Fill = MainPage.s_colour;
-               
+
+            _game.createObsticles();
+
+
+            _game.createBottomObsticles();
+            _game.createTopObsticles();
+           
+           
+
             _game.StartTimer(sender, e);
 
         }
+        
 
         
 
+        private void onClick(object sender, RoutedEventArgs e)
+        {
+            
+            
+            double move = Canvas.GetTop(testHoothoot);
+            move += 10;
+            Canvas.SetTop(testHoothoot, move);
 
+            HootHoot hoothoot = new HootHoot(testHoothoot, _game);
+            hoothoot.OnHoothootDies();
 
+           
+        }
 
         
-
-
 
     }
 

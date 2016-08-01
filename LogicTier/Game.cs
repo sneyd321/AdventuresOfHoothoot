@@ -32,16 +32,47 @@ namespace ProjectProposal
 
         private int _difficulty;
 
-        private Map _map;
+        public Map _map;
 
-        public Game(ProgressBar progressbar, Rectangle mapBackground)
+        private Canvas _canvas;
+
+        public static List<Obsticle> _obsticleOnTopList;
+
+        public static List<Obsticle> _obsticleOnBottomList;
+
+        private Rectangle _testHoothoot;
+
+        public Game(ProgressBar progressbar, Rectangle mapBackground, Canvas canvas, Rectangle testHoothoot)
         {
             _progressBar = progressbar;
+
             _mapBackground = mapBackground;
+
+            _canvas = canvas;
+
+            _testHoothoot = testHoothoot;
 
             _difficulty = Difficulty.s_mapSpeed;
 
-            _map = new Map(-3000, _mapBackground);
+            _map = new Map(-3000, _mapBackground, _canvas);
+
+
+        }
+
+        public List<Obsticle> obsticleListOnTop
+        {
+            get
+            {
+                return _obsticleOnTopList;
+            }
+        }
+
+        public List<Obsticle> obsticleListOnBottom
+        {
+            get
+            {
+                return _obsticleOnBottomList;
+            }
         }
 
 
@@ -49,7 +80,7 @@ namespace ProjectProposal
         {
             //Future Parameters
             int difficulty = _difficulty;
-            int stopPoint = -3000;
+            double stopPoint = (_mapBackground.ActualWidth * -1);
 
             double divider = (stopPoint * -1) / difficulty;
 
@@ -71,22 +102,113 @@ namespace ProjectProposal
 
             else
             {
-                var rectPosistion = Canvas.GetLeft(_mapBackground);
+                double rectPosistion = Canvas.GetLeft(_mapBackground);
                 rectPosistion -= difficulty;
                 Canvas.SetLeft(_mapBackground, rectPosistion);
-            }          
+
+                foreach (Obsticle obsticle in _obsticleOnTopList)
+                {
+                    double obstPosistion = Canvas.GetLeft(obsticle.getObsticle);
+                    obstPosistion -= difficulty;
+                    Canvas.SetLeft(obsticle.getObsticle, obstPosistion);
+
+                }
+
+                foreach (Obsticle obsticle in _obsticleOnBottomList)
+                {
+                    double obstPosistion = Canvas.GetLeft(obsticle.getObsticle);
+                    obstPosistion -= difficulty;
+                    Canvas.SetLeft(obsticle.getObsticle, obstPosistion);
+
+                }
+
+
+            }
+
+
+
+
 
         }
         
 
         public void StartTimer(object sender, RoutedEventArgs e)
         {
+            
             Canvas.SetLeft(_mapBackground, 0);
+            
             _tmRaceTimer = new DispatcherTimer();
             _tmRaceTimer.Tick += OnProgressBarIncrease;
             _tmRaceTimer.Interval = TimeSpan.FromMilliseconds(100);
             _tmRaceTimer.Start();           
 
         }
+
+        public void createObsticles()
+        {
+            double numOfObst = _mapBackground.ActualWidth / Difficulty.s_obsticleDistance;
+            int obsticleNumber = (int)numOfObst;
+
+            _obsticleOnTopList = new List<Obsticle>();
+
+            for (int i = 0; i < obsticleNumber; i++)
+            {
+                _obsticleOnTopList.Add(new Obsticle(_canvas, _testHoothoot));
+            }
+
+
+
+            _obsticleOnBottomList = new List<Obsticle>();
+
+            for (int i = 0; i < obsticleNumber; i++)
+            {
+                _obsticleOnBottomList.Add(new Obsticle(_canvas, _testHoothoot));
+            }
+
+
+        }
+
+        public void createTopObsticles()
+        {
+            int i = 0;
+
+            foreach (Obsticle obsticle in _obsticleOnTopList)
+            {
+                _map.placeObsticles(obsticle);
+
+
+
+
+                int left = Difficulty.s_obsticleDistance * i;
+                obsticle.setLocation(left, 0);
+                i++;
+
+            }
+        }
+
+        public void createBottomObsticles()
+        {
+            int i = 0;
+
+            foreach (Obsticle obsticle in _obsticleOnBottomList)
+            {
+
+
+                _map.placeObsticles(obsticle);
+
+                obsticle.getObsticle.RenderTransformOrigin = new Point(1, 1);
+                ScaleTransform flipObsticle = new ScaleTransform();
+                flipObsticle.ScaleY = -1;
+
+                int left = Difficulty.s_obsticleDistance * i;
+                obsticle.setLocation(left, _mapBackground.ActualHeight - (obsticle.getObsticle.ActualHeight));
+                i++;
+
+
+
+            }
+        }
+
+
     }
 }

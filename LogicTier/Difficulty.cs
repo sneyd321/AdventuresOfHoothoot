@@ -11,12 +11,14 @@ namespace ProjectProposal
     {
         public static int s_mapSpeed;
 
-        private string _dChoice = "normal";
+        public static int s_obsticleDistance;
+
+        private string _dChoice;
 
         public Difficulty() //obstacleDistance)
         {
-            
-           
+            _dChoice = "normal";
+
         }
 
         public int mapSpeed 
@@ -46,16 +48,19 @@ namespace ProjectProposal
             if (_dChoice == "easy")
             {
                 s_mapSpeed = 10;
+                s_obsticleDistance = 200;
                 
             }
             else if (_dChoice == "normal")
             {
                 s_mapSpeed = 25;
+                s_obsticleDistance = 100;
 
             }
             else if (_dChoice == "hard")
             {
                 s_mapSpeed = 50;
+                s_obsticleDistance = 50;
 
             }
         }
