@@ -64,7 +64,8 @@ namespace ProjectProposal
 
             _game.createBottomObsticles();
             _game.createTopObsticles();
-           
+
+            
            
 
             _game.StartTimer(sender, e);
@@ -76,8 +77,10 @@ namespace ProjectProposal
 
         private void onClick(object sender, RoutedEventArgs e)
         {
+
             
-            
+
+
             double move = Canvas.GetTop(testHoothoot);
             move += 10;
             Canvas.SetTop(testHoothoot, move);

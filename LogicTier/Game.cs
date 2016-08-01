@@ -40,7 +40,15 @@ namespace ProjectProposal
 
         public static List<Obsticle> _obsticleOnBottomList;
 
+        public  List<Obsticle> _topPipeTopsList;
+
+        public  List<Obsticle> _bottomPipeTopsList;
+
         private Rectangle _testHoothoot;
+
+        private Obsticle _topPipeTops;
+
+        private Obsticle _bottomPipeTops;
 
         public Game(ProgressBar progressbar, Rectangle mapBackground, Canvas canvas, Rectangle testHoothoot)
         {
@@ -55,6 +63,10 @@ namespace ProjectProposal
             _difficulty = Difficulty.s_mapSpeed;
 
             _map = new Map(-3000, _mapBackground, _canvas);
+
+            _topPipeTopsList = new List<Obsticle>();
+
+            _bottomPipeTopsList = new List<Obsticle>();
 
 
         }
@@ -111,6 +123,7 @@ namespace ProjectProposal
                     double obstPosistion = Canvas.GetLeft(obsticle.getObsticle);
                     obstPosistion -= difficulty;
                     Canvas.SetLeft(obsticle.getObsticle, obstPosistion);
+                    Canvas.SetLeft(_topPipeTops.getObsticle, obstPosistion);
 
                 }
 
@@ -119,10 +132,21 @@ namespace ProjectProposal
                     double obstPosistion = Canvas.GetLeft(obsticle.getObsticle);
                     obstPosistion -= difficulty;
                     Canvas.SetLeft(obsticle.getObsticle, obstPosistion);
-
                 }
 
+                foreach (Obsticle obsticle in _topPipeTopsList)
+                {
+                    double obstPosistion = Canvas.GetLeft(obsticle.getObsticle);
+                    obstPosistion -= difficulty;
+                    Canvas.SetLeft(obsticle.getObsticle, obstPosistion);
+                }
 
+                foreach (Obsticle obsticle in _bottomPipeTopsList)
+                {
+                    double obstPosistion = Canvas.GetLeft(obsticle.getObsticle);
+                    obstPosistion -= difficulty;
+                    Canvas.SetLeft(obsticle.getObsticle, obstPosistion);
+                }
             }
 
 
@@ -165,6 +189,8 @@ namespace ProjectProposal
                 _obsticleOnBottomList.Add(new Obsticle(_canvas, _testHoothoot));
             }
 
+           
+
 
         }
 
@@ -174,7 +200,7 @@ namespace ProjectProposal
 
             foreach (Obsticle obsticle in _obsticleOnTopList)
             {
-                _map.placeObsticles(obsticle);
+                double height = _map.placeObsticles(obsticle);
 
 
 
@@ -183,8 +209,15 @@ namespace ProjectProposal
                 obsticle.setLocation(left, 0);
                 i++;
 
+                _topPipeTops = new Obsticle(_canvas, _testHoothoot);
+
+                _topPipeTops.createSize(75, 30);
+                _topPipeTops.setLocation(left - 12.5, height);
+                _topPipeTopsList.Add(_topPipeTops);
             }
         }
+       
+
 
         public void createBottomObsticles()
         {
@@ -194,7 +227,7 @@ namespace ProjectProposal
             {
 
 
-                _map.placeObsticles(obsticle);
+                double height = _map.placeObsticles(obsticle);
 
                 obsticle.getObsticle.RenderTransformOrigin = new Point(1, 1);
                 ScaleTransform flipObsticle = new ScaleTransform();
@@ -204,10 +237,24 @@ namespace ProjectProposal
                 obsticle.setLocation(left, _mapBackground.ActualHeight - (obsticle.getObsticle.ActualHeight));
                 i++;
 
+                _bottomPipeTops = new Obsticle(_canvas, _testHoothoot);
 
+                _bottomPipeTops.createSize(75, 30);
+                _bottomPipeTops.setLocation(left - 12.5, _mapBackground.ActualHeight  - height);
 
+                _bottomPipeTops.getObsticle.RenderTransformOrigin = new Point(1, 1);
+                ScaleTransform flipPipeTop = new ScaleTransform();
+                flipPipeTop.ScaleY = -1;
+
+                _bottomPipeTopsList.Add(_bottomPipeTops);
             }
         }
+
+        
+
+
+
+
 
 
     }

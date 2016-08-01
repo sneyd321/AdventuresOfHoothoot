@@ -14,7 +14,7 @@ namespace ProjectProposal
 {
     public class Map
     {
-        public Obsticle _obsticle;
+
 
         private double _mapSize;
 
@@ -24,7 +24,7 @@ namespace ProjectProposal
 
         private Random _randomizer;
 
-        public int _obstHeight;
+        private int _obstHeight;
 
 
         public Map(double mapSize, Rectangle mapBackground, Canvas canvas)
@@ -42,6 +42,8 @@ namespace ProjectProposal
 
         }
 
+       
+
         
 
         public double mapSize
@@ -53,7 +55,7 @@ namespace ProjectProposal
             }
         }
 
-        public void placeObsticles(Obsticle obsticle)
+        public int placeObsticles(Obsticle obsticle)
         {
             
 
@@ -65,11 +67,11 @@ namespace ProjectProposal
                 int easy = (int)modifier;
 
                 int _obstHeight = _randomizer.Next(easy);
-                obsticle.createSize(_obstHeight);
+                obsticle.createSize(50, _obstHeight);
 
                 obsticle.setLocation(0, 0);
-                
-                
+
+                return _obstHeight;
 
             }
             else if (Difficulty.s_mapSpeed == 25)
@@ -78,31 +80,41 @@ namespace ProjectProposal
                 int medium = (int)modifier;
 
                 int _obstHeight = _randomizer.Next(medium);
-                obsticle.createSize(_obstHeight);
+                obsticle.createSize(50, _obstHeight);
 
                 obsticle.setLocation(0, 0);
 
+                return _obstHeight;
 
-                
 
             }
             else if (Difficulty.s_mapSpeed == 50)
             {
-                double modifier = _mapBackground.ActualHeight / 2;
+                double modifier = (_mapBackground.ActualHeight / 2) - 25;
                 int hard = (int)modifier;
 
                 int _obstHeight = _randomizer.Next(hard);
-                obsticle.createSize(_obstHeight);
+                obsticle.createSize(50, _obstHeight);
 
                 obsticle.setLocation(0, 0);
 
-
+                return _obstHeight;
 
             }
-           
 
+            return _obstHeight;
+
+
+        }
+        public void placePipeTops(Obsticle obsticle)
+        {
+            obsticle.createSize(75, 20);
+
+            
+
+            obsticle.setLocation(0, 0);
         }
 
 
-    }
+        }
 }

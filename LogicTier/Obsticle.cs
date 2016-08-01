@@ -49,23 +49,45 @@ namespace LogicTier
 
         public void createRectangle()
         {
+            LinearGradientBrush obstColour = new LinearGradientBrush();
+            obstColour.StartPoint = new Point(0, 0.5);
+            obstColour.EndPoint = new Point(1, 0.5);
 
 
-            SolidColorBrush obstColour = new SolidColorBrush();
-            SolidColorBrush obstStroke = new SolidColorBrush();
 
-            obstStroke.Color = Colors.Black;
-            obstColour.Color = Colors.LimeGreen;
+            Color value1 = Colors.Green;
+            Color value2 = Colors.LimeGreen;
 
+
+            GradientStop colour1 = new GradientStop();
+            colour1.Color = value1;
+            colour1.Offset = 0.0;
+
+
+            GradientStop colour2 = new GradientStop();
+            colour2.Color = value2;
+            colour2.Offset = 0.5;
+
+            GradientStop colour3 = new GradientStop();
+            colour3.Color = value1;
+            colour3.Offset = 1.0;
+
+
+            obstColour.GradientStops.Add(colour1);
+            obstColour.GradientStops.Add(colour2);
+            obstColour.GradientStops.Add(colour3);
+
+
+            
 
             _obsticle.Fill = obstColour;
-            _obsticle.Stroke = obstStroke;
+            
 
             _obsticle.HorizontalAlignment = HorizontalAlignment.Left;
             _obsticle.VerticalAlignment = VerticalAlignment.Center;
 
 
-            createSize(0);
+            createSize(0, 0);
 
 
 
@@ -82,9 +104,9 @@ namespace LogicTier
 
        
 
-        public void createSize(double height)
+        public void createSize(double width, double height)
         {
-            _obsticle.Width = 50;
+            _obsticle.Width = width;
             _obsticle.Height = height;
         }
 
