@@ -11,13 +11,13 @@ namespace LogicTier
 {
     public class HootHoot
     {
-        private Game _game; 
+        private Map _map; 
 
         private Rectangle _hoothoot;
 
-        public HootHoot(Rectangle testHoothoot, Game game)
+        public HootHoot(Rectangle testHoothoot, Map map)
         {
-            _game = game;
+            _map = map;
 
             _hoothoot = testHoothoot;
             
@@ -25,14 +25,25 @@ namespace LogicTier
 
         public void OnHoothootDies()
         {
-            for (int i = 0; i < _game.obsticleListOnTop.Count; i++)
+            for (int i = 0; i < _map.obsticleListOnTop.Count; i++)
             {
-                _game.obsticleListOnTop[i].Collision(_hoothoot, _game.obsticleListOnTop[i].getObsticle);
+                _map.obsticleListOnTop[i].Collision(_hoothoot, _map.obsticleListOnTop[i].getObsticle);
             }
 
-            for (int i = 0; i < _game.obsticleListOnBottom.Count; i++)
+            for (int i = 0; i < _map._topPipeTopsList.Count; i++)
             {
-                _game.obsticleListOnBottom[i].Collision(_hoothoot, _game.obsticleListOnBottom[i].getObsticle);
+                _map._topPipeTopsList[i].Collision(_hoothoot, _map._topPipeTopsList[i].getObsticle);
+            }
+
+
+            for (int i = 0; i < _map.obsticleListOnBottom.Count; i++)
+            {
+                _map.obsticleListOnBottom[i].Collision(_hoothoot, _map.obsticleListOnBottom[i].getObsticle);
+            }
+
+            for (int i = 0; i < _map._bottomPipeTopsList.Count; i++)
+            {
+                _map._bottomPipeTopsList[i].Collision(_hoothoot, _map._bottomPipeTopsList[i].getObsticle);
             }
         }
 

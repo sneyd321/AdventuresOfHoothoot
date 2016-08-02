@@ -35,9 +35,7 @@ namespace ProjectProposal
 
         private Game _game;
 
-        public static List<Obsticle> _obsticleOnTopList;
-
-        public static List<Obsticle> _obsticleOnBottomList;
+        
 
 
         public DemoGamePage()
@@ -47,7 +45,7 @@ namespace ProjectProposal
             _game = new Game(_progressBar, _mapBackground, _canvas, testHoothoot);
 
 
-
+            
            
         }
 
@@ -59,16 +57,8 @@ namespace ProjectProposal
             //_progressBar.Visibility = Visibility.Collapsed;
             _mapBackground.Fill = MainPage.s_colour;
 
-            _game.createObsticles();
-
-
-            _game.createBottomObsticles();
-            _game.createTopObsticles();
-
             
-           
-
-            _game.StartTimer(sender, e);
+            _game.LoadGame(sender, e);
 
         }
         
@@ -77,15 +67,13 @@ namespace ProjectProposal
 
         private void onClick(object sender, RoutedEventArgs e)
         {
-
             
-
 
             double move = Canvas.GetTop(testHoothoot);
             move += 10;
             Canvas.SetTop(testHoothoot, move);
 
-            HootHoot hoothoot = new HootHoot(testHoothoot, _game);
+            HootHoot hoothoot = new HootHoot(testHoothoot, _game.map);
             hoothoot.OnHoothootDies();
 
            

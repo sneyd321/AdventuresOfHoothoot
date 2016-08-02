@@ -16,6 +16,7 @@ using Windows.UI;
 using Windows.Media;
 using ProjectProposal;
 using LogicTier;
+using Windows.UI.Xaml.Media.Imaging;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -36,8 +37,8 @@ namespace ProjectProposal
         /// </summary>
         private Difficulty _difficulty;
 
-        
 
+        private BitmapImage _hoothootImage;
         
 
 
@@ -54,8 +55,10 @@ namespace ProjectProposal
             //Method that creates a default background if the user did not select a background
             DefaultBackground();
 
-           
+            
+            
 
+            
         }
         private void OnLoad(object sender, RoutedEventArgs e)
         {
@@ -69,6 +72,7 @@ namespace ProjectProposal
             _btnBackground4.Visibility = Visibility.Collapsed;
             _btnBackground5.Visibility = Visibility.Collapsed;
 
+            
         }
 
 
@@ -134,7 +138,7 @@ namespace ProjectProposal
 
 
             Color value1 = Colors.Black;
-            Color value2 = Colors.Yellow;
+            Color value2 = Colors.DarkGreen;
 
 
             GradientStop colour1 = new GradientStop();
@@ -351,7 +355,7 @@ namespace ProjectProposal
 
 
             Color value1 = Colors.Black;
-            Color value2 = Colors.Yellow;
+            Color value2 = Colors.DarkGreen;
 
 
             GradientStop colour1 = new GradientStop();
