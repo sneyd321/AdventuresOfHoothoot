@@ -15,7 +15,7 @@ namespace ProjectProposal
 
         private string _dChoice;
 
-        public Difficulty() //obstacleDistance)
+        public Difficulty() 
         {
             _dChoice = "normal";
 
@@ -42,25 +42,31 @@ namespace ProjectProposal
                 _dChoice = value;
             }
         }
-
+        /// <summary>
+        /// sets values based on the selected difficulties
+        /// </summary>
         public void OnDifficultySelected()
         {
+            //if choice is easy
             if (_dChoice == "easy")
             {
+                
                 s_mapSpeed = 10;
-                s_obsticleDistance = 200;
+                s_obsticleDistance = 400;
                 
             }
+            //if choice is normal
             else if (_dChoice == "normal")
             {
                 s_mapSpeed = 25;
-                s_obsticleDistance = 100;
+                s_obsticleDistance = 200;
 
             }
+            //if choice is hard
             else if (_dChoice == "hard")
             {
                 s_mapSpeed = 50;
-                s_obsticleDistance = 50;
+                s_obsticleDistance = 100;
 
             }
         }

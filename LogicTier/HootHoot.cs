@@ -23,8 +23,12 @@ namespace LogicTier
             
         }
 
+        /// <summary>
+        /// Checks if hoothoot has collided with an obsticle
+        /// </summary>
         public void OnHoothootDies()
         {
+
             for (int i = 0; i < _map.obsticleListOnTop.Count; i++)
             {
                 _map.obsticleListOnTop[i].Collision(_hoothoot, _map.obsticleListOnTop[i].getObsticle);

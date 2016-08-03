@@ -31,8 +31,10 @@ namespace ProjectProposal
     /// </summary>
     public sealed partial class DemoGamePage : Page
     {
-        
 
+        /// <summary>
+        /// Field that initializes the game object
+        /// </summary>
         private Game _game;
 
         
@@ -42,6 +44,7 @@ namespace ProjectProposal
         {
             this.InitializeComponent();
 
+            //create game object
             _game = new Game(_progressBar, _canvas, testHoothoot);
 
 
@@ -51,15 +54,19 @@ namespace ProjectProposal
 
         
         
-
+        /// <summary>
+        /// Runs code while loading gamepage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            
+            //sets the colour of map background
             _game.map.mapBackground.Fill = MainPage.s_colour;
 
 
 
-
+            //starts the timer
             _game.StartTimer(sender, e);
 
             
