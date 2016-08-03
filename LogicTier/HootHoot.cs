@@ -5,32 +5,51 @@ using System.Text;
 using System.Threading.Tasks;
 using LogicTier;
 using ProjectProposal;
-using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Shapes;
 
 namespace LogicTier
 {
     public class HootHoot
     {
-        const float FallingSpeed = 9.81f; //The Falling speed of the bird is a fixed speed
+        private Map _map; 
 
-        Image OwlUi;
+        private Rectangle _hoothoot;
 
-        double _startLocation;
-
-
-        /// <summary>
-        /// Hoot Hoot The Owl Character object init
-        /// </summary>
-        /// <param name="HootHootTheOwl"></param>
-        /// <param name="startLocation"></param>
-        public HootHoot(Image HootHootTheOwl)
+        public HootHoot(Rectangle testHoothoot, Map map)
         {
-            OwlUi = HootHootTheOwl;
+            _map = map;
 
-
+            _hoothoot = testHoothoot;
+            
         }
 
+        /// <summary>
+        /// Checks if hoothoot has collided with an obsticle
+        /// </summary>
+        public void OnHoothootDies()
+        {
 
+            for (int i = 0; i < _map.obsticleListOnTop.Count; i++)
+            {
+                _map.obsticleListOnTop[i].Collision(_hoothoot, _map.obsticleListOnTop[i].getObsticle);
+            }
+
+            for (int i = 0; i < _map.topPipeTop.Count; i++)
+            {
+                _map.topPipeTop[i].Collision(_hoothoot, _map.topPipeTop[i].getObsticle);
+            }
+
+
+            for (int i = 0; i < _map.obsticleListOnBottom.Count; i++)
+            {
+                _map.obsticleListOnBottom[i].Collision(_hoothoot, _map.obsticleListOnBottom[i].getObsticle);
+            }
+
+            for (int i = 0; i < _map.bottomPipeTop.Count; i++)
+            {
+                _map.bottomPipeTop[i].Collision(_hoothoot, _map.bottomPipeTop[i].getObsticle);
+            }
+        }
 
     }
 }
