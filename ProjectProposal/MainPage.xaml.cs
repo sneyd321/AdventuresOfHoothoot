@@ -337,10 +337,11 @@ namespace ProjectProposal
             
         }
 
-        private void _btnExitGame_Click(object sender, RoutedEventArgs e)
+        private void OnExitGame(object sender, RoutedEventArgs e)
         {
             //exit game
-            throw new NullReferenceException();
+            
+            Application.Current.Exit();
         }
 
         private void NextPage_Click(object sender, RoutedEventArgs e)

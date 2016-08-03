@@ -37,8 +37,8 @@ namespace ProjectProposal
         /// </summary>
         private Game _game;
 
-        
 
+        
 
         public DemoGamePage()
         {
@@ -47,13 +47,13 @@ namespace ProjectProposal
             //create game object
             _game = new Game(_progressBar, _canvas, testHoothoot);
 
-
-            
            
+
+
         }
 
-        
-        
+
+
         /// <summary>
         /// Runs code while loading gamepage
         /// </summary>
@@ -64,7 +64,7 @@ namespace ProjectProposal
             //sets the colour of map background
             _game.map.mapBackground.Fill = MainPage.s_colour;
 
-
+            _canvas.Background = MainPage.s_colour;
 
             //starts the timer
             _game.StartTimer(sender, e);
@@ -80,14 +80,15 @@ namespace ProjectProposal
         {
             
 
+            
+
+            
             double move = Canvas.GetTop(testHoothoot);
             move += 10;
             Canvas.SetTop(testHoothoot, move);
 
-            HootHoot hoothoot = new HootHoot(testHoothoot, _game.map);
+            HootHoot hoothoot = new HootHoot(testHoothoot, _game);
             hoothoot.OnHoothootDies();
-
-           
         }
 
         

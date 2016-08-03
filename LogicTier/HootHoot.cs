@@ -11,15 +11,18 @@ namespace LogicTier
 {
     public class HootHoot
     {
-        private Map _map; 
+        
+
+        private Game _game;
 
         private Rectangle _hoothoot;
 
-        public HootHoot(Rectangle testHoothoot, Map map)
+        public HootHoot(Rectangle testHoothoot, Game game)
         {
-            _map = map;
+            _game = game;
 
             _hoothoot = testHoothoot;
+            
             
         }
 
@@ -29,27 +32,33 @@ namespace LogicTier
         public void OnHoothootDies()
         {
 
-            for (int i = 0; i < _map.obsticleListOnTop.Count; i++)
+            for (int i = 0; i < _game.map.obsticleListOnTop.Count; i++)
             {
-                _map.obsticleListOnTop[i].Collision(_hoothoot, _map.obsticleListOnTop[i].getObsticle);
+                _game.map.obsticleListOnTop[i].Collision(_hoothoot, _game.map.obsticleListOnTop[i].getObsticle);
+                
             }
 
-            for (int i = 0; i < _map.topPipeTop.Count; i++)
+            for (int i = 0; i < _game.map.topPipeTop.Count; i++)
             {
-                _map.topPipeTop[i].Collision(_hoothoot, _map.topPipeTop[i].getObsticle);
+                _game.map.topPipeTop[i].Collision(_hoothoot, _game.map.topPipeTop[i].getObsticle);
+                
             }
 
 
-            for (int i = 0; i < _map.obsticleListOnBottom.Count; i++)
+            for (int i = 0; i < _game.map.obsticleListOnBottom.Count; i++)
             {
-                _map.obsticleListOnBottom[i].Collision(_hoothoot, _map.obsticleListOnBottom[i].getObsticle);
+                _game.map.obsticleListOnBottom[i].Collision(_hoothoot, _game.map.obsticleListOnBottom[i].getObsticle);
+                
             }
 
-            for (int i = 0; i < _map.bottomPipeTop.Count; i++)
+            for (int i = 0; i < _game.map.bottomPipeTop.Count; i++)
             {
-                _map.bottomPipeTop[i].Collision(_hoothoot, _map.bottomPipeTop[i].getObsticle);
+                _game.map.bottomPipeTop[i].Collision(_hoothoot, _game.map.bottomPipeTop[i].getObsticle);
+                
             }
         }
+
+        
 
     }
 }

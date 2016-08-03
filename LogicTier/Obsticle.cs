@@ -17,6 +17,7 @@ using Windows.Media;
 using Windows.UI.Xaml.Shapes;
 using ProjectProposal;
 using LogicTier;
+using Windows.UI.Popups;
 
 namespace LogicTier
 {
@@ -133,7 +134,7 @@ namespace LogicTier
         /// </summary>
         /// <param name="testHoothoot"></param>
         /// <param name="Pipe"></param>
-        public void Collision(Rectangle testHoothoot, Rectangle Pipe)
+        public async void Collision(Rectangle testHoothoot, Rectangle Pipe)
         {
             //create a rectangle around hoothoot
             double hhLeft = Canvas.GetLeft(testHoothoot);
@@ -154,7 +155,9 @@ namespace LogicTier
             //else end game
             else
             {
-                throw new NullReferenceException();
+                MessageDialog msg = new MessageDialog("Game Over");
+                await msg.ShowAsync();
+                Application.Current.Exit();
             }
         }
 

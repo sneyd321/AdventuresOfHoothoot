@@ -38,7 +38,7 @@ namespace ProjectProposal
 
         private Obsticle _topPipeTops;
 
-        private Obsticle _bottomPipeTops; 
+        private Obsticle _bottomPipeTops;
 
         
 
@@ -57,8 +57,12 @@ namespace ProjectProposal
             _bottomPipeTopsList = new List<Obsticle>();
          
             _map = new Rectangle();
+
+            
                    
             createMap(width);
+
+            
 
             createObsticles();
 
@@ -117,7 +121,8 @@ namespace ProjectProposal
             _map.VerticalAlignment = VerticalAlignment.Center;
 
             
-            _map.Width = width ;
+            
+            _map.Width = width;
             _map.Height = _canvas.ActualHeight;
 
             _canvas.Children.Add(_map);
@@ -126,6 +131,10 @@ namespace ProjectProposal
             Canvas.SetTop(_map, _canvas.ActualHeight);
 
         }
+
+        
+
+        
 
 
 
@@ -236,7 +245,7 @@ namespace ProjectProposal
                 //get the height of obsticles to place pipe tops
                 double height = placeObsticles(obsticle);
                 //set the location of the obsticle
-                int left = Difficulty.s_obsticleDistance * value;
+                int left = Difficulty.s_obsticleDistance * value + 500;
                 obsticle.setLocation(left, 0);
                 value++;
                 //create pipe tops
@@ -265,7 +274,7 @@ namespace ProjectProposal
                 ScaleTransform flipObsticle = new ScaleTransform();
                 flipObsticle.ScaleY = -1;
                 //set the location of the obsticle
-                int left = Difficulty.s_obsticleDistance * value;
+                int left = Difficulty.s_obsticleDistance * value + 500;
                 obsticle.setLocation(left, _map.ActualHeight - (obsticle.getObsticle.ActualHeight));
                 value++;
                 //create pipe tops
