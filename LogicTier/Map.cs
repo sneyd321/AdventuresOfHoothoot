@@ -15,39 +15,36 @@ namespace ProjectProposal
 {
     public class Map
     {
-
-
-        private double _mapSize;
-
-        private Rectangle _mapBackground;
+        
 
         private Canvas _canvas;
 
         private Random _randomizer;
 
+        private Rectangle _map;
+
         //do not remove
         private int _obstHeight;
 
-        public List<Obsticle> _obsticleOnTopList;
+        private List<Obsticle> _obsticleOnTopList;
 
-        public List<Obsticle> _obsticleOnBottomList;
+        private List<Obsticle> _obsticleOnBottomList;
 
-        public List<Obsticle> _topPipeTopsList;
+        private List<Obsticle> _topPipeTopsList;
 
-        public List<Obsticle> _bottomPipeTopsList;
+        private List<Obsticle> _bottomPipeTopsList;
 
         private Rectangle _testHoothoot;
 
         private Obsticle _topPipeTops;
 
-        private Obsticle _bottomPipeTops;
+        private Obsticle _bottomPipeTops; 
 
-        public Map(double mapSize, Rectangle mapBackground, Canvas canvas, Rectangle testHoothoot)
+        
+
+        public Map(Canvas canvas, Rectangle testHoothoot, int width)
         {
-
-            _mapSize = mapSize;
-
-            _mapBackground = mapBackground;
+ 
 
             _canvas = canvas;
 
@@ -58,14 +55,24 @@ namespace ProjectProposal
             _topPipeTopsList = new List<Obsticle>();
 
             _bottomPipeTopsList = new List<Obsticle>();
+         
+            _map = new Rectangle();
+                   
+            createMap(width);
 
+            createObsticles();
+
+            createBottomObsticles();
+
+            createTopObsticles();
 
         }
+
         public Rectangle mapBackground
         {
             get
             {
-                return mapBackground;
+                return _map;
             }
         }
 
@@ -102,18 +109,25 @@ namespace ProjectProposal
             }
         }
 
-
-
-
-
-        public double mapSize
+        private void createMap(int width)
         {
-            get
-            {
-                _mapSize = _mapBackground.ActualWidth;
-                return _mapSize;
-            }
+            _map.HorizontalAlignment = HorizontalAlignment.Left;
+            _map.VerticalAlignment = VerticalAlignment.Center;
+
+            _map.Width = width;
+            _map.Height = _canvas.ActualHeight;
+
+            _canvas.Children.Add(_map);
+
+            Canvas.SetLeft(_map, 0);
+            Canvas.SetTop(_map, _canvas.ActualHeight);
+
         }
+
+
+
+
+
 
         public int placeObsticles(Obsticle obsticle)
         {
@@ -122,7 +136,7 @@ namespace ProjectProposal
             //if easy
             if (Difficulty.s_mapSpeed == 10)
             {
-                double modifier = _mapBackground.ActualHeight / 4;
+                double modifier = _map.ActualHeight / 4;
                 int easy = (int)modifier;
 
                 int _obstHeight = _randomizer.Next(easy);
@@ -135,7 +149,7 @@ namespace ProjectProposal
             }
             else if (Difficulty.s_mapSpeed == 25)
             {
-                double modifier = _mapBackground.ActualHeight / 3;
+                double modifier = _map.ActualHeight / 3;
                 int medium = (int)modifier;
 
                 int _obstHeight = _randomizer.Next(medium);
@@ -149,7 +163,7 @@ namespace ProjectProposal
             }
             else if (Difficulty.s_mapSpeed == 50)
             {
-                double modifier = (_mapBackground.ActualHeight / 2) - 25;
+                double modifier = (_map.ActualHeight / 2) - 25;
                 int hard = (int)modifier;
 
                 int _obstHeight = _randomizer.Next(hard);
@@ -170,7 +184,8 @@ namespace ProjectProposal
 
         public void createObsticles()
         {
-            double numOfObst = _mapBackground.ActualWidth / Difficulty.s_obsticleDistance;
+
+            double numOfObst = _map.ActualWidth / Difficulty.s_obsticleDistance;
             int obsticleNumber = (int)numOfObst;
 
             _obsticleOnTopList = new List<Obsticle>();
@@ -230,13 +245,13 @@ namespace ProjectProposal
                 flipObsticle.ScaleY = -1;
 
                 int left = Difficulty.s_obsticleDistance * i;
-                obsticle.setLocation(left, _mapBackground.ActualHeight - (obsticle.getObsticle.ActualHeight));
+                obsticle.setLocation(left, _map.ActualHeight - (obsticle.getObsticle.ActualHeight));
                 i++;
 
                 _bottomPipeTops = new Obsticle(_canvas, _testHoothoot);
 
                 _bottomPipeTops.createSize(75, 30);
-                _bottomPipeTops.setLocation(left - 12.5, _mapBackground.ActualHeight - height);
+                _bottomPipeTops.setLocation(left - 12.5, _map.ActualHeight - height);
 
                 _bottomPipeTops.getObsticle.RenderTransformOrigin = new Point(1, 1);
                 ScaleTransform flipPipeTop = new ScaleTransform();
@@ -248,9 +263,9 @@ namespace ProjectProposal
 
         public void MoveEverythingLeft(int difficulty)
         {
-            double rectPosistion = Canvas.GetLeft(_mapBackground);
+            double rectPosistion = Canvas.GetLeft(_map);
             rectPosistion -= difficulty;
-            Canvas.SetLeft(_mapBackground, rectPosistion);
+            Canvas.SetLeft(_map, rectPosistion);
 
             foreach (Obsticle obsticle in obsticleListOnTop)
             {

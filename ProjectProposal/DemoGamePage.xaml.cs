@@ -42,7 +42,7 @@ namespace ProjectProposal
         {
             this.InitializeComponent();
 
-            _game = new Game(_progressBar, _mapBackground, _canvas, testHoothoot);
+            _game = new Game(_progressBar, _canvas, testHoothoot);
 
 
             
@@ -54,11 +54,15 @@ namespace ProjectProposal
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            //_progressBar.Visibility = Visibility.Collapsed;
-            _mapBackground.Fill = MainPage.s_colour;
+            
+            _game.map.mapBackground.Fill = MainPage.s_colour;
+
+
+
+
+            _game.StartTimer(sender, e);
 
             
-            _game.LoadGame(sender, e);
 
         }
         

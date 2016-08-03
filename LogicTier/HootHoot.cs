@@ -30,9 +30,9 @@ namespace LogicTier
                 _map.obsticleListOnTop[i].Collision(_hoothoot, _map.obsticleListOnTop[i].getObsticle);
             }
 
-            for (int i = 0; i < _map._topPipeTopsList.Count; i++)
+            for (int i = 0; i < _map.topPipeTop.Count; i++)
             {
-                _map._topPipeTopsList[i].Collision(_hoothoot, _map._topPipeTopsList[i].getObsticle);
+                _map.topPipeTop[i].Collision(_hoothoot, _map.topPipeTop[i].getObsticle);
             }
 
 
@@ -41,9 +41,9 @@ namespace LogicTier
                 _map.obsticleListOnBottom[i].Collision(_hoothoot, _map.obsticleListOnBottom[i].getObsticle);
             }
 
-            for (int i = 0; i < _map._bottomPipeTopsList.Count; i++)
+            for (int i = 0; i < _map.bottomPipeTop.Count; i++)
             {
-                _map._bottomPipeTopsList[i].Collision(_hoothoot, _map._bottomPipeTopsList[i].getObsticle);
+                _map.bottomPipeTop[i].Collision(_hoothoot, _map.bottomPipeTop[i].getObsticle);
             }
         }
 

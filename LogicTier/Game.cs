@@ -32,17 +32,19 @@ namespace ProjectProposal
 
         private int _difficulty;
 
-        private Rectangle _mapBackground;
+        
 
-        public Game(ProgressBar progressbar, Rectangle mapBackGround, Canvas canvas, Rectangle hoothoot)
+        public Game(ProgressBar progressbar, Canvas canvas, Rectangle hoothoot )
         {
             _progressBar = progressbar;
 
-            _mapBackground = mapBackGround;
+            
 
             _difficulty = Difficulty.s_mapSpeed;
 
-            _map = new Map(-3000, mapBackGround, canvas, hoothoot);
+
+
+            _map = new Map(canvas, hoothoot, 4000);
 
             
 
@@ -63,17 +65,18 @@ namespace ProjectProposal
         {
             
             int difficulty = _difficulty;
-            double stopPoint = (_mapBackground.ActualWidth * -1);
+            double stopPoint = (map.mapBackground.ActualWidth * -1);
 
             double divider = (stopPoint * -1) / difficulty;
 
+            
 
 
             _progressBar.Value += (_progressBar.Maximum / divider);
 
 
 
-            double currentPosistion = Canvas.GetLeft(_mapBackground);
+            double currentPosistion = Canvas.GetLeft(map.mapBackground);
 
 
             if (currentPosistion <= stopPoint)
@@ -98,7 +101,7 @@ namespace ProjectProposal
         public void StartTimer(object sender, RoutedEventArgs e)
         {
             
-            Canvas.SetLeft(_mapBackground, 0);
+            
             
             _tmRaceTimer = new DispatcherTimer();
             _tmRaceTimer.Tick += OnProgressBarIncrease;
@@ -107,16 +110,11 @@ namespace ProjectProposal
 
         }
 
-        public void LoadGame(object sender, RoutedEventArgs e)
-        {
-            _map.createObsticles();
         
-            _map.createBottomObsticles();
-            _map.createTopObsticles();
 
-            StartTimer(sender, e);
+            
 
-        }
+        
 
         
 

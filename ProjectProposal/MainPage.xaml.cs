@@ -38,7 +38,7 @@ namespace ProjectProposal
         private Difficulty _difficulty;
 
 
-        private BitmapImage _hoothootImage;
+        
         
 
 
