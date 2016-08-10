@@ -134,7 +134,7 @@ namespace LogicTier
         /// </summary>
         /// <param name="testHoothoot"></param>
         /// <param name="Pipe"></param>
-        public void Collision(Ellipse testHoothoot, Rectangle Pipe)
+        public async void Collision(Ellipse testHoothoot, Rectangle Pipe)
         {
             //create a rectangle around hoothoot
             double hhLeft = Canvas.GetLeft(testHoothoot);

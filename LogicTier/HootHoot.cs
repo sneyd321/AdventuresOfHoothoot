@@ -16,7 +16,7 @@ namespace LogicTier
 {
     public class HootHoot
     {
-        private Map _map;
+        private Game _game;
 
         private Canvas _canvas;
 
@@ -39,9 +39,9 @@ namespace LogicTier
 
         
 
-        public HootHoot(Ellipse hoothoot, Map map, Canvas canvas)
+        public HootHoot(Ellipse hoothoot, Game game, Canvas canvas)
         {
-            _map = map;
+            _game = game;
             _canvas = canvas;
             _xlocation = 200;
             _ylocation = 50;

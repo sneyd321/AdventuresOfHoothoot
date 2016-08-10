@@ -61,7 +61,7 @@ namespace ProjectProposal
             //creates map object
             _map = new Map(canvas, hoothootShape, 4000);
 
-            _hoothoot = new HootHoot(hoothootShape, _map, canvas);
+            _hoothoot = new HootHoot(hoothootShape, this, canvas);
 
 
 
