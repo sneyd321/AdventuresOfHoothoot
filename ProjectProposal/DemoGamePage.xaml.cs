@@ -50,9 +50,6 @@ namespace ProjectProposal
             //create game object
             _game = new Game(_progressBar, _canvas, hoothootShape);
 
-           
-
-
         }
 
 

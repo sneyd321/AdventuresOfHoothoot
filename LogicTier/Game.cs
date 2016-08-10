@@ -27,7 +27,7 @@ namespace ProjectProposal
         /// <summary>
         /// Field that initializes the timer
         /// </summary>
-        private DispatcherTimer _tmRaceTimer;
+        private static DispatcherTimer _tmRaceTimer;
 
         /// <summary>
         /// Field that initializes the progressbar
@@ -74,6 +74,14 @@ namespace ProjectProposal
             get
             {
                 return _map;
+            }
+        }
+
+        public static DispatcherTimer timer
+        {
+            get
+            {
+                return _tmRaceTimer;
             }
         }
 

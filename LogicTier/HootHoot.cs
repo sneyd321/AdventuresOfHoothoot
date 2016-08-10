@@ -43,8 +43,8 @@ namespace LogicTier
         {
             _game = game;
             _canvas = canvas;
-            _xlocation = 200;
-            _ylocation = 50;
+            _xlocation = 150;
+            _ylocation = 159;
             _hoothoot = new Ellipse();
 
 

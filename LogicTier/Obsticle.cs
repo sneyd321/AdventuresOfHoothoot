@@ -156,6 +156,7 @@ namespace LogicTier
             else
             {
                 MessageDialog msg = new MessageDialog("Game Over");
+                Game.timer.Stop();
                 await msg.ShowAsync();
                 Application.Current.Exit();
             }

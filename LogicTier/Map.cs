@@ -185,7 +185,7 @@ namespace ProjectProposal
             {
                 //set the max length equal to 1/2 of height of map +/- height of hoothoot
 
-                double modifier = (_map.ActualHeight / 2) - 25;
+                double modifier = (_map.ActualHeight / 2) - 40;
                 int hard = (int)modifier;
                 //set the obsticle height to a random value
 
