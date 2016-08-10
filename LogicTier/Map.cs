@@ -34,7 +34,7 @@ namespace ProjectProposal
 
         private List<Obsticle> _bottomPipeTopsList;
 
-        private Rectangle _testHoothoot;
+        private Ellipse _hoothoot;
 
         private Obsticle _topPipeTops;
 
@@ -42,13 +42,13 @@ namespace ProjectProposal
 
         
 
-        public Map(Canvas canvas, Rectangle testHoothoot, int width)
+        public Map(Canvas canvas, Ellipse hoothoot, int width)
         {
  
 
             _canvas = canvas;
 
-            _testHoothoot = testHoothoot;
+            _hoothoot = hoothoot;
 
             _randomizer = new Random();
 
@@ -209,7 +209,7 @@ namespace ProjectProposal
             //create obsticle objects and append them to then list
             for (int i = 0; i < obsticleNumber; i++)
             {
-                _obsticleOnTopList.Add(new Obsticle(_canvas, _testHoothoot));
+                _obsticleOnTopList.Add(new Obsticle(_canvas, _hoothoot));
             }
 
 
@@ -218,7 +218,7 @@ namespace ProjectProposal
             //create obsticle objects and append them to then list
             for (int i = 0; i < obsticleNumber; i++)
             {
-                _obsticleOnBottomList.Add(new Obsticle(_canvas, _testHoothoot));
+                _obsticleOnBottomList.Add(new Obsticle(_canvas, _hoothoot));
             }
 
 
@@ -240,7 +240,7 @@ namespace ProjectProposal
                 obsticle.setLocation(left, 0);
                 value++;
                 //create pipe tops
-                _topPipeTops = new Obsticle(_canvas, _testHoothoot);
+                _topPipeTops = new Obsticle(_canvas, _hoothoot);
                 _topPipeTops.createSize(75, 30);
                 _topPipeTops.setLocation(left - 12.5, height);
                 //add pipe tops to pipeTopList
@@ -269,7 +269,7 @@ namespace ProjectProposal
                 obsticle.setLocation(left, _map.ActualHeight - (obsticle.getObsticle.ActualHeight));
                 value++;
                 //create pipe tops
-                _bottomPipeTops = new Obsticle(_canvas, _testHoothoot);
+                _bottomPipeTops = new Obsticle(_canvas, _hoothoot);
                 _bottomPipeTops.createSize(75, 30);
                 _bottomPipeTops.setLocation(left - 12.5, _map.ActualHeight - height);
                 //flip pipe tops

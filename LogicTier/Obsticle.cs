@@ -28,7 +28,7 @@ namespace LogicTier
 
         private Canvas _canvas;
 
-        public Obsticle(Canvas canvas, Rectangle hoothoot)
+        public Obsticle(Canvas canvas, Ellipse hoothoot)
         {
 
             _canvas = canvas;
@@ -133,7 +133,7 @@ namespace LogicTier
         /// </summary>
         /// <param name="testHoothoot"></param>
         /// <param name="Pipe"></param>
-        public void Collision(Rectangle testHoothoot, Rectangle Pipe)
+        public void Collision(Ellipse testHoothoot, Rectangle Pipe)
         {
             //create a rectangle around hoothoot
             double hhLeft = Canvas.GetLeft(testHoothoot);

@@ -10,20 +10,9 @@
     Loaded="OnLoad">
 
     <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ProgressBar x:Name="_progressBar" HorizontalAlignment="Left" Height="46" Margin="10,686,0,-12" VerticalAlignment="Top" Width="836"/>
-        <Canvas x:Name="_canvas" HorizontalAlignment="Left" Height="642" Margin="18,18,0,0" VerticalAlignment="Top" Width="1000">
-            
-            <Rectangle x:Name="testHoothoot" Fill="Brown" Height="82" Canvas.Left="12" Canvas.Top="272" Stroke="Black" Width="74"/>
-
-
-        </Canvas>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="82" Margin="984,662,0,-24" VerticalAlignment="Top" Width="234" Click="onClick"/>
-
-
-
-
+        <ProgressBar x:Name="_progressBar" HorizontalAlignment="Left" Height="46" Margin="10,529,0,0" VerticalAlignment="Top" Width="836"/>
+        <Canvas x:Name="_canvas" HorizontalAlignment="Left" Height="477" Margin="20,18,0,0" VerticalAlignment="Top" Width="1000"/>
+        <Button x:Name="button" Content="Flap" HorizontalAlignment="Left" Height="82" Margin="996,528,0,0" VerticalAlignment="Top" Width="234" Click="onClick"/>
     </Grid>
-
-
 </Page>
 

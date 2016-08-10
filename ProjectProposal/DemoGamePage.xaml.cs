@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 using System.Windows;
 using LogicTier;
 using Windows.UI.Xaml.Shapes;
+using System.Threading;
 
 
 
@@ -37,7 +38,9 @@ namespace ProjectProposal
         /// </summary>
         private Game _game;
 
-        
+        //private HootHoot _hoothoot;
+
+        private Ellipse hoothootShape = new Ellipse();
 
 
         public DemoGamePage()
@@ -45,11 +48,10 @@ namespace ProjectProposal
             this.InitializeComponent();
 
             //create game object
-            _game = new Game(_progressBar, _canvas, testHoothoot);
+            _game = new Game(_progressBar, _canvas, hoothootShape);
 
 
-            
-           
+            //_hoothoot = new HootHoot(_HootHoot, _game.map, _canvas);
         }
 
         
@@ -64,28 +66,25 @@ namespace ProjectProposal
             //sets the colour of map background
             _game.map.mapBackground.Fill = MainPage.s_colour;
 
-
+           
 
             //starts the timer
             _game.StartTimer(sender, e);
-
+            
             
 
         }
-        
 
-        
+       
 
         private void onClick(object sender, RoutedEventArgs e)
         {
-            
+            //double move = Canvas.GetTop(HootHootHitbox);
+            //move += 10;
+            //Canvas.SetTop(HootHootHitbox, move);
 
-            double move = Canvas.GetTop(testHoothoot);
-            move += 10;
-            Canvas.SetTop(testHoothoot, move);
-
-            HootHoot hoothoot = new HootHoot(testHoothoot, _game.map);
-            hoothoot.OnHoothootDies();
+            _game.onJump();
+           // _game.
 
            
         }
