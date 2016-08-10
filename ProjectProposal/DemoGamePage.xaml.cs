@@ -50,12 +50,13 @@ namespace ProjectProposal
             //create game object
             _game = new Game(_progressBar, _canvas, hoothootShape);
 
+           
 
-            //_hoothoot = new HootHoot(_HootHoot, _game.map, _canvas);
+
         }
 
-        
-        
+
+
         /// <summary>
         /// Runs code while loading gamepage
         /// </summary>
@@ -66,7 +67,7 @@ namespace ProjectProposal
             //sets the colour of map background
             _game.map.mapBackground.Fill = MainPage.s_colour;
 
-           
+            _canvas.Background = MainPage.s_colour;
 
             //starts the timer
             _game.StartTimer(sender, e);

@@ -17,6 +17,7 @@ using Windows.Media;
 using Windows.UI.Xaml.Shapes;
 using ProjectProposal;
 using LogicTier;
+using Windows.UI.Popups;
 
 namespace LogicTier
 {
@@ -154,7 +155,9 @@ namespace LogicTier
             //else end game
             else
             {
-                throw new NullReferenceException();
+                MessageDialog msg = new MessageDialog("Game Over");
+                await msg.ShowAsync();
+                Application.Current.Exit();
             }
         }
 

@@ -19,7 +19,7 @@
         <Button x:Name="_btnChangeBackground" Content="Change Background" HorizontalAlignment="Left" Height="65" Margin="415,261,0,0" VerticalAlignment="Top" Width="439" Click="OnChangeBackground" Foreground="#FF895151"/>
         <Button x:Name="_btnSelectDifficulty" Content="Select Difficulty" HorizontalAlignment="Left" Height="65" Margin="415,367,0,0" VerticalAlignment="Top" Width="439" Click="OnSelectDifficulty" Foreground="#FF895151"/>
         <Button x:Name="_btnStartGame" Content="Start Game" HorizontalAlignment="Left" Height="65" Margin="415,468,0,0" VerticalAlignment="Top" Width="439" Click="NextPage_Click" Foreground="#FF895151"/>
-        <Button x:Name="_btnExitGame" Content="Exit Game" HorizontalAlignment="Left" Height="64" Margin="415,567,0,0" VerticalAlignment="Top" Width="439" Click="_btnExitGame_Click" Foreground="#FF895151"/>
+        <Button x:Name="_btnExitGame" Content="Exit Game" HorizontalAlignment="Left" Height="64" Margin="415,567,0,0" VerticalAlignment="Top" Width="439" Click="OnExitGame" Foreground="#FF895151"/>
         <Button x:Name="_btnEasy" Content="Easy" HorizontalAlignment="Left" Height="66" Margin="366,366,0,0" VerticalAlignment="Top" Width="161" Click="OnEasy" Foreground="#FF895151"/>
         <Button x:Name="_btnNormal" Content="Normal" HorizontalAlignment="Left" Height="65" Margin="550,367,0,0" VerticalAlignment="Top" Width="161" Click="OnNormal" Foreground="#FF895151"/>
         <Button x:Name="_btnHard" Content="Hard" HorizontalAlignment="Left" Height="66" Margin="735,366,0,0" VerticalAlignment="Top" Width="161" Click="OnHard" Foreground="#FF895151"/>

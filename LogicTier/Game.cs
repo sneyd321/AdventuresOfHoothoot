@@ -89,7 +89,7 @@ namespace ProjectProposal
             
             int difficulty = _difficulty;
             //create the point that will stop the map from moving
-            double stopPoint = (map.mapBackground.ActualWidth * -1);
+            double stopPoint = (map.mapBackground.ActualWidth * -1) - (550 - Difficulty.s_obsticleDistance);
             //set the value of how much the progress bar will increment per timer tick
             double divider = (stopPoint * -1) / difficulty;
 
@@ -105,7 +105,7 @@ namespace ProjectProposal
 
 
             //return the value of _progressBar
-            _progressBar.Value += (_progressBar.Maximum / divider);
+            _progressBar.Value += ((_progressBar.Maximum) / divider);
 
 
             //get the current posistion of the map
@@ -125,6 +125,11 @@ namespace ProjectProposal
                 _map.MoveEverythingLeft(difficulty);
             }
 
+            if (_progressBar.Value <= _progressBar.Maximum)
+            {
+                //TODO: 
+
+            }
 
 
 
