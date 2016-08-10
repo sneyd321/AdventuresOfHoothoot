@@ -67,7 +67,7 @@ namespace ScoreScreen
             catch (Exception)
             {
                 MessageDialog md = new MessageDialog("File doesn't exist:  " + fileName);
-                md.ShowAsync();
+                await md.ShowAsync();
             }
         }
     }
