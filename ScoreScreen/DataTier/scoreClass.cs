@@ -19,6 +19,6 @@ namespace DataTier
 {
     public class scoreClass
     {
-     
+     //create score class here
     }
 }
