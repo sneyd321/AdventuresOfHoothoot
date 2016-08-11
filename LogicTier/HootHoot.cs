@@ -16,94 +16,107 @@ namespace LogicTier
 {
     public class HootHoot
     {
+
         private Game _game;
 
         private Canvas _canvas;
 
-        private Ellipse _hoothoot;
+        private Ellipse _Elhoothoot;
 
         private Image _imghoothoot;
-        
-
-        private const float FALLINGSPEED = 10.5f;
-        private const double FLAPSPEED = -35.50f;
 
         private double _xlocation;
 
         private double _ylocation;
 
+        //Constants
+        private const float FALLINGSPEED = 12.5f;
+        private const double FLAPSPEED = -40.50f;
+
         
-        
-
 
 
         
-
+        /// <summary>
+        /// Constructor for the hoot hoot class
+        /// Takes the hitbox shape, game and canvas objects
+        /// </summary>
+        /// <param name="hoothoot"></param>
+        /// <param name="game"></param>
+        /// <param name="canvas"></param>
         public HootHoot(Ellipse hoothoot, Game game, Canvas canvas)
         {
             _game = game;
             _canvas = canvas;
             _xlocation = 150;
-            _ylocation = 159;
-            _hoothoot = new Ellipse();
+            _ylocation = 150;
+            _Elhoothoot = new Ellipse();
 
-
-            createHootHoot();
-            
+            createHootHoot();            
         }
+
+        /// <summary>
+        /// Draws Hoothoot at the specified location when called.
+        /// </summary>
         public void DrawHootHoot()
         {
-
-
-            Canvas.SetLeft(_hoothoot, _xlocation);
-            Canvas.SetTop(_hoothoot, _ylocation);
+            Canvas.SetLeft(_Elhoothoot, _xlocation);
+            Canvas.SetTop(_Elhoothoot, _ylocation);
             Canvas.SetLeft(_imghoothoot, _xlocation);
             Canvas.SetTop(_imghoothoot, _ylocation);
             //_canvas.Children.Add(imghoothoot);
         }
 
+        /// <summary>
+        /// Method for moving the character upwards on user input
+        /// </summary>
         public void Flap()
         {
-
-            _ylocation += FLAPSPEED;
+            _ylocation += FLAPSPEED/2;
+            DrawHootHoot();
+            _ylocation += FLAPSPEED/2;
             DrawHootHoot();
         }
     
-
+        /// <summary>
+        /// Method that simulates gravity of hoothoot, updates canvas
+        /// </summary>
         public void fall()
         {
             _ylocation += FALLINGSPEED;
             DrawHootHoot();
         }
 
+        /// <summary>
+        /// Method to create a new HootHoot and put it on the canvas
+        /// </summary>
         private void createHootHoot()
         {
-            _hoothoot  = new Ellipse();
-
+            //create new ellipse and image for hoothoot collisions and appearance
+            _Elhoothoot  = new Ellipse();
             _imghoothoot = new Image();
 
-            _hoothoot.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Left;
-            _hoothoot.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
+            _Elhoothoot.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Left;
+            _Elhoothoot.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
 
-            _hoothoot.Width = 45;
-            _hoothoot.Height = 50;
+            _Elhoothoot.Width = 45;
+            _Elhoothoot.Height = 50;
             
-
+            //Store source of image
             _imghoothoot.Source = new BitmapImage(new Uri("ms-appx:///Assets/hoothoot.png"));
 
+            //Set the image of hoot hoot from the uri above
             ImageBrush _hoothootBitmapImage = new ImageBrush();
             _hoothootBitmapImage.ImageSource = _imghoothoot.Source;
 
-                
 
+            //Add the Items onto the canvas
             _canvas.Children.Add(_imghoothoot);
+            _canvas.Children.Add(_Elhoothoot);
 
-            _canvas.Children.Add(_hoothoot);
-
-            Canvas.SetLeft(_hoothoot, 500);
-            Canvas.SetTop(_hoothoot, 500);
-
-            //DrawHootHoot();
+            //Set their initial locations
+            Canvas.SetLeft(_Elhoothoot, 200);
+            Canvas.SetTop(_Elhoothoot, 600);
 
         }
  
@@ -118,26 +131,26 @@ namespace LogicTier
 
             for (int i = 0; i < _game.map.obsticleListOnTop.Count; i++)
             {
-                _game.map.obsticleListOnTop[i].Collision(_hoothoot, _game.map.obsticleListOnTop[i].getObsticle);
+                _game.map.obsticleListOnTop[i].Collision(_Elhoothoot, _game.map.obsticleListOnTop[i].getObsticle);
                 
             }
 
             for (int i = 0; i < _game.map.topPipeTop.Count; i++)
             {
-                _game.map.topPipeTop[i].Collision(_hoothoot, _game.map.topPipeTop[i].getObsticle);
+                _game.map.topPipeTop[i].Collision(_Elhoothoot, _game.map.topPipeTop[i].getObsticle);
                 
             }
 
 
             for (int i = 0; i < _game.map.obsticleListOnBottom.Count; i++)
             {
-                _game.map.obsticleListOnBottom[i].Collision(_hoothoot, _game.map.obsticleListOnBottom[i].getObsticle);
+                _game.map.obsticleListOnBottom[i].Collision(_Elhoothoot, _game.map.obsticleListOnBottom[i].getObsticle);
                 
             }
 
             for (int i = 0; i < _game.map.bottomPipeTop.Count; i++)
             {
-                _game.map.bottomPipeTop[i].Collision(_hoothoot, _game.map.bottomPipeTop[i].getObsticle);
+                _game.map.bottomPipeTop[i].Collision(_Elhoothoot, _game.map.bottomPipeTop[i].getObsticle);
                 
             }
         }
