@@ -59,7 +59,7 @@ namespace ProjectProposal
             _hoothootShape = hoothootShape;
 
             //creates map object
-            _map = new Map(canvas, hoothootShape, 1000);
+            _map = new Map(canvas, hoothootShape, 10000);
 
             _hoothoot = new HootHoot(hoothootShape, this, canvas);
 
@@ -155,7 +155,8 @@ namespace ProjectProposal
 
             _tmRaceTimer.Tick += OnProgressBarIncrease;
 
-            _tmRaceTimer.Interval = TimeSpan.FromMilliseconds(100);
+            _tmRaceTimer.Interval = TimeSpan.FromMilliseconds(50);
+
             //start timer
             _tmRaceTimer.Start();
             
