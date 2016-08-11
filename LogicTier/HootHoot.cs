@@ -31,7 +31,7 @@ namespace LogicTier
 
         //Constants
         private const float FALLINGSPEED = 12.5f;
-        private const double FLAPSPEED = -40.50f;
+        private const double FLAPSPEED = -45.50f;
 
         
 
