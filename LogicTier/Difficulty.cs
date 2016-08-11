@@ -8,16 +8,19 @@ using LogicTier;
 namespace ProjectProposal
 {
     public class Difficulty
+
     {
         public static int s_mapSpeed;
 
-        public static int s_obsticleDistance;
+        public static int s_obsticleDistance;        
 
-        private string _dChoice;
+        public static int s_difficultyChoice;
+
+        
 
         public Difficulty() 
         {
-            _dChoice = "normal";
+            s_difficultyChoice = 2;
 
         }
 
@@ -30,16 +33,16 @@ namespace ProjectProposal
             
         }
 
-        public string difficultyChoice
+        public int difficultyChoice
         {
             get
             {
-                return _dChoice;
+                return s_difficultyChoice;
             }
 
             set
             {
-                _dChoice = value;
+                s_difficultyChoice = value;
             }
         }
         /// <summary>
@@ -48,7 +51,7 @@ namespace ProjectProposal
         public void OnDifficultySelected()
         {
             //if choice is easy
-            if (_dChoice == "easy")
+            if (s_difficultyChoice == 1)
             {
                 
                 s_mapSpeed = 10;
@@ -56,14 +59,15 @@ namespace ProjectProposal
                 
             }
             //if choice is normal
-            else if (_dChoice == "normal")
+            else if (s_difficultyChoice == 2)
             {
                 s_mapSpeed = 25;
                 s_obsticleDistance = 200;
 
+
             }
             //if choice is hard
-            else if (_dChoice == "hard")
+            else if (s_difficultyChoice == 3)
             {
                 s_mapSpeed = 50;
                 s_obsticleDistance = 100;

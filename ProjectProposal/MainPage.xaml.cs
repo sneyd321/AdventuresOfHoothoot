@@ -93,7 +93,7 @@ namespace ProjectProposal
             _btnHard.Visibility = Visibility.Collapsed;
 
             //Sets the difficulty choice to easy
-            _difficulty.difficultyChoice = "easy";
+            _difficulty.difficultyChoice = 1;
             _difficulty.OnDifficultySelected();
         }
 
@@ -105,7 +105,7 @@ namespace ProjectProposal
             _btnHard.Visibility = Visibility.Collapsed;
 
             //Setss difficulty choice to normal
-            _difficulty.difficultyChoice = "normal";
+            _difficulty.difficultyChoice = 2;
             _difficulty.OnDifficultySelected();
         }
 
@@ -117,7 +117,7 @@ namespace ProjectProposal
             _btnHard.Visibility = Visibility.Collapsed;
 
             //sets the difficulty choice to hard
-            _difficulty.difficultyChoice = "hard";
+            _difficulty.difficultyChoice = 3;
             _difficulty.OnDifficultySelected();
         }
 
