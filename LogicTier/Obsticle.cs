@@ -29,7 +29,7 @@ namespace LogicTier
 
         private Canvas _canvas;
 
-        public Obsticle(Canvas canvas, Rectangle hoothoot)
+        public Obsticle(Canvas canvas, Ellipse hoothoot)
         {
 
             _canvas = canvas;
@@ -134,7 +134,7 @@ namespace LogicTier
         /// </summary>
         /// <param name="testHoothoot"></param>
         /// <param name="Pipe"></param>
-        public async void Collision(Rectangle testHoothoot, Rectangle Pipe)
+        public async void Collision(Ellipse testHoothoot, Rectangle Pipe)
         {
             //create a rectangle around hoothoot
             double hhLeft = Canvas.GetLeft(testHoothoot);
@@ -156,6 +156,7 @@ namespace LogicTier
             else
             {
                 MessageDialog msg = new MessageDialog("Game Over");
+                Game.timer.Stop();
                 await msg.ShowAsync();
                 Application.Current.Exit();
                 Game._tmRaceTimer.Stop();

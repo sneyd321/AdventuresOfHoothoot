@@ -27,7 +27,7 @@ namespace ProjectProposal
         /// <summary>
         /// Field that initializes the timer
         /// </summary>
-        public static DispatcherTimer _tmRaceTimer;
+        private static DispatcherTimer _tmRaceTimer;
 
         /// <summary>
         /// Field that initializes the progressbar
@@ -44,21 +44,26 @@ namespace ProjectProposal
         /// </summary>
         private int _difficulty;
 
+        private HootHoot _hoothoot;
+
+        private Ellipse _hoothootShape;
         
 
-        public Game(ProgressBar progressbar, Canvas canvas, Rectangle hoothoot )
+        public Game(ProgressBar progressbar, Canvas canvas, Ellipse hoothootShape )
         {
             _progressBar = progressbar;
 
             
-            
             _difficulty = Difficulty.s_mapSpeed;
 
+            _hoothootShape = hoothootShape;
 
             //creates map object
-            _map = new Map(canvas, hoothoot, 4000);
+            _map = new Map(canvas, hoothootShape, 4000);
 
-            
+            _hoothoot = new HootHoot(hoothootShape, this, canvas);
+
+
 
         }
         /// <summary>
@@ -69,6 +74,14 @@ namespace ProjectProposal
             get
             {
                 return _map;
+            }
+        }
+
+        public static DispatcherTimer timer
+        {
+            get
+            {
+                return _tmRaceTimer;
             }
         }
 
@@ -88,7 +101,16 @@ namespace ProjectProposal
             //set the value of how much the progress bar will increment per timer tick
             double divider = (stopPoint * -1) / difficulty;
 
-            
+
+
+            _hoothoot.fall();
+            _hoothoot.DrawHootHoot();
+            _hoothoot.OnHoothootDies();
+
+
+
+
+
 
             //return the value of _progressBar
             _progressBar.Value += ((_progressBar.Maximum) / divider);
@@ -121,7 +143,8 @@ namespace ProjectProposal
 
 
         }
-        
+
+
         /// <summary>
         /// Initializes and starts the timer
         /// </summary>
@@ -129,24 +152,33 @@ namespace ProjectProposal
         /// <param name="e"></param>
         public void StartTimer(object sender, RoutedEventArgs e)
         {
-            
-            
+
+
             //create timer object 
-            _tmRaceTimer = new DispatcherTimer();           
+            _tmRaceTimer = new DispatcherTimer();
+
             _tmRaceTimer.Tick += OnProgressBarIncrease;
+
             _tmRaceTimer.Interval = TimeSpan.FromMilliseconds(100);
             //start timer
-            _tmRaceTimer.Start();           
+            _tmRaceTimer.Start();
+            
 
         }
 
-        
+        public void onJump()
+        {
+            _hoothoot.Flap();
+            _hoothoot.DrawHootHoot();
+        }
 
-            
 
-        
 
-        
+
+
+
+
+
 
 
 
