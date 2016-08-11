@@ -133,11 +133,7 @@ namespace ProjectProposal
                 _map.MoveEverythingLeft(difficulty);
             }
 
-            if (_progressBar.Value >= _progressBar.Maximum)
-            {
-                //TODO: 
-
-            }
+            
 
 
 

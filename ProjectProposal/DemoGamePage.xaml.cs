@@ -23,6 +23,7 @@ using System.Threading;
 
 
 
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace ProjectProposal
@@ -77,15 +78,18 @@ namespace ProjectProposal
 
         private void onClick(object sender, RoutedEventArgs e)
         {
-            //double move = Canvas.GetTop(HootHootHitbox);
-            //move += 10;
-            //Canvas.SetTop(HootHootHitbox, move);
+            
 
             _game.onJump();
-           // _game.
 
-           
+            if (_progressBar.Value >= _progressBar.Maximum)
+            {
+                this.Frame.Navigate(typeof(MainPage));
+            }
+
         }
+
+        
 
         
 
