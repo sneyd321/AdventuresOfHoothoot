@@ -18,7 +18,7 @@ using Windows.UI.Popups;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace ScoreScreenPage
+namespace ProjectProposal
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -29,6 +29,8 @@ namespace ScoreScreenPage
         {
             this.InitializeComponent();
         }
+
+        
 
         private void Close()
         {

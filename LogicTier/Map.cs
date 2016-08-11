@@ -150,7 +150,7 @@ namespace ProjectProposal
             
 
             //if easy
-            if (Difficulty.s_mapSpeed == 10)
+            if (Difficulty.s_difficultyChoice == 1)
             {
                 //set the max length equal to 1/4 of height of map
                 double modifier = _map.ActualHeight / 4;
@@ -165,7 +165,7 @@ namespace ProjectProposal
 
             }
             //if medium
-            else if (Difficulty.s_mapSpeed == 25)
+            else if (Difficulty.s_difficultyChoice == 2)
             {
                 //set the max length equal to 1/3 of height of map
                 double modifier = _map.ActualHeight / 3;
@@ -181,7 +181,7 @@ namespace ProjectProposal
 
             }
             //if hard
-            else if (Difficulty.s_mapSpeed == 50)
+            else if (Difficulty.s_difficultyChoice == 3)
             {
                 //set the max length equal to 1/2 of height of map +/- height of hoothoot
 
