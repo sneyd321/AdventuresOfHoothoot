@@ -8,12 +8,15 @@ using LogicTier;
 namespace ProjectProposal
 {
     public class Difficulty
+
     {
         public static int s_mapSpeed;
 
         public static int s_obsticleDistance;
 
         private string _dChoice;
+
+        
 
         public Difficulty() 
         {

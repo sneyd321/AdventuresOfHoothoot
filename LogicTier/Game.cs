@@ -27,7 +27,7 @@ namespace ProjectProposal
         /// <summary>
         /// Field that initializes the timer
         /// </summary>
-        private DispatcherTimer _tmRaceTimer;
+        public static DispatcherTimer _tmRaceTimer;
 
         /// <summary>
         /// Field that initializes the progressbar
@@ -111,7 +111,7 @@ namespace ProjectProposal
                 _map.MoveEverythingLeft(difficulty);
             }
 
-            if (_progressBar.Value <= _progressBar.Maximum)
+            if (_progressBar.Value >= _progressBar.Maximum)
             {
                 //TODO: 
 

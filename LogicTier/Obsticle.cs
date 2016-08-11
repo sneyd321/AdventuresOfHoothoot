@@ -158,6 +158,7 @@ namespace LogicTier
                 MessageDialog msg = new MessageDialog("Game Over");
                 await msg.ShowAsync();
                 Application.Current.Exit();
+                Game._tmRaceTimer.Stop();
             }
         }
 
