@@ -73,28 +73,19 @@ namespace ProjectProposal
             
 
         }
-
        
 
+       
         private void onClick(object sender, RoutedEventArgs e)
         {
-            
-
             _game.onJump();
 
             if (_progressBar.Value >= _progressBar.Maximum)
-
             {
-                
+                _game.score.onHootHootComplete();
                 this.Frame.Navigate(typeof(ScorePage));
             }
-
         }
-
-        
-
-        
-
     }
 
 }

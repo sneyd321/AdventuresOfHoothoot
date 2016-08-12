@@ -23,7 +23,7 @@
 
 
         <Canvas Grid.ColumnSpan="3" Grid.RowSpan="5">
-            <Button x:Name="exitButton" Content="EXIT" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="200" Width="350" FontSize="72" FontWeight="Bold" BorderBrush="Red" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" Grid.Row="1" Canvas.Left="1488" Canvas.Top="813" Click="exitButton_Click" Foreground="Lime" Background="Black"/>
+            <Button x:Name="exitButton" Content="EXIT" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="132" Width="268" FontSize="72" FontWeight="Bold" BorderBrush="Red" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" Grid.Row="1" Canvas.Left="1579" Canvas.Top="860" Click="exitButton_Click" Foreground="Lime" Background="Black"/>
             <TextBlock x:Name="Scorescreen" HorizontalAlignment="Center" TextWrapping="Wrap" Text="ScoreScreen" VerticalAlignment="Top" Height="142" Width="1854" FontSize="90" TextAlignment="Center" SelectionHighlightColor="#FFF7FF00" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="2" Canvas.Left="10" Canvas.Top="10">
                 <TextBlock.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -32,8 +32,8 @@
                     </LinearGradientBrush>
                 </TextBlock.Foreground>
             </TextBlock>
-            <Button x:Name="btnSave" Content="Save File" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="200" Width="350" FontSize="48" FontWeight="Bold" BorderBrush="Red" Canvas.Left="1121" Canvas.Top="813" Click="btnSave_Click" Background="Black" Foreground="#FF4DFF00"/>
-            <Button x:Name="btnOpen" Content="Open File" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="200" Width="350" FontSize="48" FontWeight="Bold" BorderBrush="Red" Canvas.Left="754" Canvas.Top="813" Click="btnOpen_Click" Background="Black" Foreground="#FF0FFF00"/>
+            <Button x:Name="btnSave" Content="Save File" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="115" Width="241" FontSize="48" FontWeight="Bold" BorderBrush="Red" Canvas.Left="1033" Canvas.Top="889" Click="btnSave_Click" Background="Black" Foreground="#FF4DFF00"/>
+            <Button x:Name="btnOpen" Content="Open File" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="129" Width="247" FontSize="48" FontWeight="Bold" BorderBrush="Red" Canvas.Left="754" Canvas.Top="884" Click="btnOpen_Click" Background="Black" Foreground="#FF0FFF00"/>
             <TextBox x:Name="txtContent" Canvas.Left="37" Text="&#xD;&#xA;" Canvas.Top="178" Height="567" Width="1801" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Left" BorderBrush="Red" Foreground="#FF00E300" TextWrapping="Wrap">
                 <TextBox.Background>
                     <SolidColorBrush Color="Black" Opacity="0.9"/>

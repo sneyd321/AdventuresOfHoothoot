@@ -20,6 +20,8 @@ using LogicTier;
 
 
 
+
+
 namespace ProjectProposal
 {
     public class Game
@@ -66,12 +68,14 @@ namespace ProjectProposal
 
             _hoothootShape = hoothootShape;
 
-            //creates map object
-            _map = new Map(canvas, hoothootShape, 10000);
+            
 
             _hoothoot = new HootHoot(hoothootShape, this, canvas);
 
             _score = new ScoreClass(this, hoothootShape);
+
+            //creates map object
+            _map = new Map(canvas, hoothootShape, 1000);
 
         }
         /// <summary>
@@ -82,6 +86,14 @@ namespace ProjectProposal
             get
             {
                 return _map;
+            }
+        }
+
+        public ScoreClass score
+        {
+            get
+            {
+                return _score;
             }
         }
 
@@ -118,7 +130,7 @@ namespace ProjectProposal
 
 
 
-
+            
 
 
             //return the value of _progressBar

@@ -8,6 +8,7 @@ using LogicTier;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Shapes;
 
+
 namespace ProjectProposal
 {
     public class ScoreClass

@@ -85,6 +85,7 @@ namespace LogicTier
         {
             _ylocation += FALLINGSPEED;
             DrawHootHoot();
+            
         }
 
         /// <summary>

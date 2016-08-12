@@ -40,6 +40,8 @@ namespace ProjectProposal
 
         private Obsticle _bottomPipeTops;
 
+        private ScoreClass _score;
+
         
 
         public Map(Canvas canvas, Ellipse hoothoot, int width)
@@ -58,6 +60,7 @@ namespace ProjectProposal
          
             _map = new Rectangle();
 
+            
             
                    
             createMap(width);

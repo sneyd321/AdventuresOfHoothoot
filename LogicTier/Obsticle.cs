@@ -29,11 +29,14 @@ namespace LogicTier
 
         private Canvas _canvas;
 
+        
+
         public Obsticle(Canvas canvas, Ellipse hoothoot)
         {
 
             _canvas = canvas;
             _obsticle = new Rectangle();
+            
             createRectangle();
 
             Collision(hoothoot, _obsticle);
@@ -159,7 +162,7 @@ namespace LogicTier
                 Game.timer.Stop();
                 await msg.ShowAsync();
                 Application.Current.Exit();
-                Game.timer.Stop();
+                
             }
         }
 
