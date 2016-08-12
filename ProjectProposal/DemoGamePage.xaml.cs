@@ -83,8 +83,10 @@ namespace ProjectProposal
             _game.onJump();
 
             if (_progressBar.Value >= _progressBar.Maximum)
+
             {
-                this.Frame.Navigate(typeof(MainPage));
+                
+                this.Frame.Navigate(typeof(ScorePage));
             }
 
         }

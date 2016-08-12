@@ -34,6 +34,9 @@ namespace ProjectProposal
         /// </summary>
         private ProgressBar _progressBar;
 
+
+       
+
         /// <summary>
         /// Field that initializes the map 
         /// </summary>
@@ -47,6 +50,11 @@ namespace ProjectProposal
         private HootHoot _hoothoot;
 
         private Ellipse _hoothootShape;
+
+
+        private ScoreClass _score;
+
+
         
 
         public Game(ProgressBar progressbar, Canvas canvas, Ellipse hoothootShape )
@@ -63,7 +71,7 @@ namespace ProjectProposal
 
             _hoothoot = new HootHoot(hoothootShape, this, canvas);
 
-
+            _score = new ScoreClass(this, hoothootShape);
 
         }
         /// <summary>
@@ -82,6 +90,7 @@ namespace ProjectProposal
             get
             {
                 return _tmRaceTimer;
+                
             }
         }
 
