@@ -40,7 +40,7 @@ namespace ProjectProposal
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Frame.Navigate(typeof(DemoGamePage));
         }
 
         private async void btnSave_Click(object sender, RoutedEventArgs e)
