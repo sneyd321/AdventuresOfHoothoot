@@ -159,7 +159,6 @@ namespace LogicTier
                 Game.timer.Stop();
                 await msg.ShowAsync();
                 Application.Current.Exit();
-                Game.timer.Stop();
             }
         }
 
