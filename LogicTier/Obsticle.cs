@@ -19,11 +19,12 @@ using ProjectProposal;
 using LogicTier;
 using Windows.UI.Popups;
 
+
 namespace LogicTier
 {
     public class Obsticle
     {
-        
+        private Score _score;
 
         private Rectangle _obsticle;
 
@@ -31,12 +32,12 @@ namespace LogicTier
 
         public Obsticle(Canvas canvas, Ellipse hoothoot)
         {
-
+           
             _canvas = canvas;
             _obsticle = new Rectangle();
             createRectangle();
-
-            Collision(hoothoot, _obsticle);
+            _score = new Score(Score.score);
+            
 
         }
 
@@ -134,7 +135,7 @@ namespace LogicTier
         /// </summary>
         /// <param name="testHoothoot"></param>
         /// <param name="Pipe"></param>
-        public async void Collision(Ellipse testHoothoot, Rectangle Pipe)
+        public async void Collision(Ellipse testHoothoot, Rectangle Pipe, double deadSpot)
         {
             //create a rectangle around hoothoot
             double hhLeft = Canvas.GetLeft(testHoothoot);
@@ -155,10 +156,12 @@ namespace LogicTier
             //else end game
             else
             {
-                MessageDialog msg = new MessageDialog("Game Over");
                 Game.timer.Stop();
+                MessageDialog msg = new MessageDialog("Game Over");
+                
                 await msg.ShowAsync();
-                Application.Current.Exit();
+                _score.hoothootDeadScore(deadSpot);
+                
             }
         }
 

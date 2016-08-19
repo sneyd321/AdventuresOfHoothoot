@@ -7,57 +7,140 @@ using System.Threading.Tasks;
 using LogicTier;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Shapes;
+using System.Runtime.Serialization;
+using Windows.Storage;
+using System.IO;
 
 namespace ProjectProposal
 {
-    public class ScoreClass
+    [DataContract]
+    public class Score
     {
+        [DataMember]
+        internal string _line;
 
-        private Game _game;
 
-        private Ellipse _hoothoot;
-        public ScoreClass(Game game, Ellipse hoothoot)
+        private static double s_score;
+
+        private StorageFile _scoreFile;
+
+        private string _name;
+
+        
+
+        public Score(double score)
         {
-            _game = game;
+            
+            s_score = score;
+            _name = "";
 
-            _hoothoot = hoothoot;
-        }   
+            
+            
+        }
+
+        
+
+        public static double score
+        {
+            get
+            {
+                return s_score;
+            }
+        }
+
+        public string name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = name;
+            }
+        }
+
+        public string line
+        {
+            get
+            {
+                return _line;
+            }
+        }
+         
 
 
-            //Create method onHoothootCompletesLevel
-        public int onHootHootComplete()
+        //Create method onHoothootCompletesLevel
+        public void onHootHootComplete()
         {
             //stop the timer 
             Game.timer.Stop();
 
-            //get the value of map width
-            double mapWidth = _game.map.mapBackground.ActualWidth;
+
+
             //get the difficulty
             double mapDifficulty = Difficulty.s_mapSpeed;
             //multiply the difficulty by the map width
-            double Score = mapDifficulty * mapWidth;
-            int finalScore = (int)Score;
-            // return score
-            return finalScore;
+            double finalScore = mapDifficulty * s_score;
+
+            
+            //Set value of s_score
+            s_score = finalScore;
+            
+
         }
-
-
-
-        //Create method onHootHootHitObsticle
-        public int onHootHootHitObsticle()
+        public async void readData()
         {
-            //stop  the timer
-            Game.timer.Stop();
-            //get the left value of hoothoot
-            double mapLeftWidth = Canvas.GetLeft(_hoothoot);
-            //get the difficulty
-            double mapDifficulty = Difficulty.s_mapSpeed;
-            //multiply that value by the difficulty
-            double FailScore = mapLeftWidth * mapDifficulty;
-            int finalFailScore = (int)FailScore;
-            //return score
-            return finalFailScore;
+            StorageFolder storeFold = ApplicationData.Current.LocalFolder;
+
+            try
+            {
+                _scoreFile = await storeFold.GetFileAsync("scores.txt");
+
+            }
+            catch (FileNotFoundException)
+            {
+                _scoreFile = await storeFold.CreateFileAsync("scores.txt", CreationCollisionOption.ReplaceExisting);
+
+            }
+
+
+            string scoreAsString = s_score.ToString();
+
+            await FileIO.WriteTextAsync(_scoreFile, $"{_name}, {scoreAsString}");
+
+
+
+
+            string text = await FileIO.ReadTextAsync(_scoreFile);
+
+            MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(text));
+
+            StreamReader reader = new StreamReader(mStrm);
+
+
+            _line = reader.ReadLine();
+
+
+            
         }
+
+        public void hoothootDeadScore(double deapSpot)
+        {
+            double finalScore = (deapSpot * Difficulty.s_mapSpeed) * -1;
+            s_score = finalScore;
+            
+        }
+
+        
+
+        
+
+
+
+
+
+
 
 
 

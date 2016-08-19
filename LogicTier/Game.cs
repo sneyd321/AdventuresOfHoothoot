@@ -35,7 +35,7 @@ namespace ProjectProposal
         private ProgressBar _progressBar;
 
 
-       
+        private double _score;
 
         /// <summary>
         /// Field that initializes the map 
@@ -46,13 +46,13 @@ namespace ProjectProposal
         /// Field that initializes the difficulty
         /// </summary>
         private int _difficulty;
-
+        
         private HootHoot _hoothoot;
 
         private Ellipse _hoothootShape;
 
-
-        private ScoreClass _score;
+        private Score _scoreObj;
+        
 
 
         
@@ -67,11 +67,12 @@ namespace ProjectProposal
             _hoothootShape = hoothootShape;
 
             //creates map object
-            _map = new Map(canvas, hoothootShape, 10000);
+            _map = new Map(canvas, hoothootShape, 50000);
 
             _hoothoot = new HootHoot(hoothootShape, this, canvas);
 
-            _score = new ScoreClass(this, hoothootShape);
+            _scoreObj = new Score(Score.score);
+            
 
         }
         /// <summary>
@@ -93,8 +94,16 @@ namespace ProjectProposal
                 
             }
         }
+        public DispatcherTimer timerNS
+        {
+            get
+            {
+                return _tmRaceTimer;
 
-        
+            }
+        }
+
+
 
         /// <summary>
         /// Method that show the current location of hoothoot relative to the map and moves the map for every timer tick
@@ -117,13 +126,16 @@ namespace ProjectProposal
             _hoothoot.OnHoothootDies();
 
 
-
+            
 
 
 
             //return the value of _progressBar
             _progressBar.Value += ((_progressBar.Maximum) / divider);
 
+            _score += _progressBar.Value;
+
+            
 
             //get the current posistion of the map
             double currentPosistion = Canvas.GetLeft(map.mapBackground);
@@ -132,8 +144,9 @@ namespace ProjectProposal
             if (currentPosistion <= stopPoint)
             {
                 //stop the timer
-                _tmRaceTimer.Stop();
-
+                
+                _scoreObj = new Score(_score);
+                _scoreObj.onHootHootComplete();
             }
 
             else
@@ -143,7 +156,6 @@ namespace ProjectProposal
             }
 
             
-
 
 
 

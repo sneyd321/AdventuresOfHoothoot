@@ -29,6 +29,8 @@ namespace LogicTier
 
         private double _ylocation;
 
+        private Score _score;
+
         //Constants
         private const float FALLINGSPEED = 12.5f;
         private const double FLAPSPEED = -45.50f;
@@ -51,6 +53,8 @@ namespace LogicTier
             _xlocation = 150;
             _ylocation = 150;
             _Elhoothoot = new Ellipse();
+
+            
 
             createHootHoot();            
         }
@@ -129,30 +133,40 @@ namespace LogicTier
         public void OnHoothootDies()
         {
 
+            double deadSpot = Canvas.GetLeft(_game.map.mapBackground);
+
+
+            
+
             for (int i = 0; i < _game.map.obsticleListOnTop.Count; i++)
             {
-                _game.map.obsticleListOnTop[i].Collision(_Elhoothoot, _game.map.obsticleListOnTop[i].getObsticle);
+                _game.map.obsticleListOnTop[i].Collision(_Elhoothoot, _game.map.obsticleListOnTop[i].getObsticle, deadSpot);
                 
             }
 
             for (int i = 0; i < _game.map.topPipeTop.Count; i++)
             {
-                _game.map.topPipeTop[i].Collision(_Elhoothoot, _game.map.topPipeTop[i].getObsticle);
+                _game.map.topPipeTop[i].Collision(_Elhoothoot, _game.map.topPipeTop[i].getObsticle, deadSpot);
                 
             }
 
 
             for (int i = 0; i < _game.map.obsticleListOnBottom.Count; i++)
             {
-                _game.map.obsticleListOnBottom[i].Collision(_Elhoothoot, _game.map.obsticleListOnBottom[i].getObsticle);
+                _game.map.obsticleListOnBottom[i].Collision(_Elhoothoot, _game.map.obsticleListOnBottom[i].getObsticle, deadSpot);
                 
             }
 
             for (int i = 0; i < _game.map.bottomPipeTop.Count; i++)
             {
-                _game.map.bottomPipeTop[i].Collision(_Elhoothoot, _game.map.bottomPipeTop[i].getObsticle);
+                _game.map.bottomPipeTop[i].Collision(_Elhoothoot, _game.map.bottomPipeTop[i].getObsticle, deadSpot);
                 
             }
+
+            
+            
+
+
         }
 
 

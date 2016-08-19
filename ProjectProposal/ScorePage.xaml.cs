@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 using Windows.UI.Popups;
 using ProjectProposal;
+using System.Runtime.Serialization.Json;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -24,51 +25,83 @@ namespace ProjectProposal
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ScorePage : Page
+    public partial class ScorePage : Page
     {
+        private DataContractJsonSerializer ser;
+        private MemoryStream stream1;
+        private Score _score;
+
         public ScorePage()
         {
             this.InitializeComponent();
+
+            _score = new Score(Score.score);
+
+            stream1 = new MemoryStream();
+
+            ser = new DataContractJsonSerializer(typeof(Score));
         }
 
         
 
-        private void Close()
+       
+
+        private void OnExit(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
         }
 
-        private void exitButton_Click(object sender, RoutedEventArgs e)
+       
+
+        private void OnLoad(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            _highScores.Visibility = Visibility.Collapsed;
         }
 
-        private async void btnSave_Click(object sender, RoutedEventArgs e)
+        
+
+        private void OnNextLevel(object sender, RoutedEventArgs e)
         {
-            string fileName = txtFileName.Text;
-            string text = txtContent.Text;
-            StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            StorageFile file = await localFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(file, text);
-            MessageDialog md = new MessageDialog("File saved" + fileName);
-            await md.ShowAsync();
+            this.Frame.Navigate(typeof(DemoGamePage));
         }
 
-        private async void btnOpen_Click(object sender, RoutedEventArgs e)
+        private void OnSubmit(object sender, RoutedEventArgs e)
         {
-            string fileName = txtFileName.Text;
-            StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            try
-            {
-                StorageFile file = await localFolder.GetFileAsync(fileName);
-                String text = await FileIO.ReadTextAsync(file);
-                txtContent.Text = text;
-            }
-            catch (Exception)
-            {
-                MessageDialog md = new MessageDialog("File doesn't exist:  " + fileName);
-                await md.ShowAsync();
-            }
+            _score.name = _userName.Text;
+            _btnSubmitString.Visibility = Visibility.Collapsed;
+            _txtBLock1.Text = "Your Score";
+            _txtBlock2.Visibility = Visibility.Collapsed;
+            _userName.Visibility = Visibility.Collapsed;
+
+            _highScores.Visibility = Visibility.Visible;
+
+
+            
+
+            _highScores.Text = $"{_userName.Text}'s score is {Score.score}";
+
+            _score.readData();
+
+           
+            save();
+
+
         }
+        private void save()
+        {
+            //serialize
+
+
+
+            ser.WriteObject(stream1, _score);
+
+            stream1.Position = 0;
+            StreamReader sr = new StreamReader(stream1);
+            
+
+        }
+
+
+
     }
 }

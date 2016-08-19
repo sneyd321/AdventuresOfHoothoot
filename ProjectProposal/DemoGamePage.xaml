@@ -10,9 +10,9 @@
     Loaded="OnLoad">
 
     <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ProgressBar x:Name="_progressBar" HorizontalAlignment="Left" Height="46" Margin="10,529,0,0" VerticalAlignment="Top" Width="836"/>
-        <Canvas x:Name="_canvas" HorizontalAlignment="Left" Height="477" Margin="1,18,0,0" VerticalAlignment="Top" Width="1279" Canvas.Left="0"/>
-        <Button x:Name="button" Content="Flap" HorizontalAlignment="Left" Height="82" Margin="996,528,0,0" VerticalAlignment="Top" Width="234" Click="onClick"/>
+        <ProgressBar x:Name="_progressBar" HorizontalAlignment="Left" Height="46" Margin="31,644,0,0" VerticalAlignment="Top" Width="925"/>
+        <Canvas x:Name="_canvas" HorizontalAlignment="Left" Height="585" Margin="1,18,0,0" VerticalAlignment="Top" Width="1279" Canvas.Left="0"/>
+        <Button x:Name="button" Content="Flap" HorizontalAlignment="Left" Height="82" Margin="1000,608,0,0" VerticalAlignment="Top" Width="234" Click="onClick"/>
     </Grid>
 </Page>
 

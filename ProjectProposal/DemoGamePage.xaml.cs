@@ -39,6 +39,8 @@ namespace ProjectProposal
         /// </summary>
         private Game _game;
 
+        private double _width;
+
         //private HootHoot _hoothoot;
 
         private Ellipse hoothootShape = new Ellipse();
@@ -50,6 +52,9 @@ namespace ProjectProposal
 
             //create game object
             _game = new Game(_progressBar, _canvas, hoothootShape);
+
+           
+
 
         }
 
@@ -69,7 +74,7 @@ namespace ProjectProposal
 
             //starts the timer
             _game.StartTimer(sender, e);
-            
+
             
 
         }
@@ -86,6 +91,10 @@ namespace ProjectProposal
 
             {
                 
+                this.Frame.Navigate(typeof(ScorePage));
+            }
+            if (_game.timerNS.IsEnabled == false)
+            {
                 this.Frame.Navigate(typeof(ScorePage));
             }
 
