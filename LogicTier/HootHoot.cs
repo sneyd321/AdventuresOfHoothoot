@@ -136,7 +136,6 @@ namespace LogicTier
             double deadSpot = Canvas.GetLeft(_game.map.mapBackground);
 
 
-
             
 
             for (int i = 0; i < _game.map.obsticleListOnTop.Count; i++)
