@@ -10,9 +10,17 @@
     Loaded="OnLoad">
 
     <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ProgressBar x:Name="_progressBar" HorizontalAlignment="Left" Height="46" Margin="31,644,0,0" VerticalAlignment="Top" Width="925"/>
-        <Canvas x:Name="_canvas" HorizontalAlignment="Left" Height="585" Margin="1,18,0,0" VerticalAlignment="Top" Width="1279" Canvas.Left="0"/>
-        <Button x:Name="button" Content="Flap" HorizontalAlignment="Left" Height="82" Margin="1000,608,0,0" VerticalAlignment="Top" Width="234" Click="onClick"/>
+        <Canvas x:Name="_canvas" HorizontalAlignment="Left" Height="585" Margin="1,18,0,0" VerticalAlignment="Top" Width="1279" Canvas.Left="0" >
+
+
+            <Ellipse x:Name="_hootHootEllipse" Height="50" Canvas.Left="144"  Canvas.Top="326" Width="50" >
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="ms-appx:///Assets/hoothoot.png" />
+                </Ellipse.Fill>
+            </Ellipse>
+        </Canvas>
+
+        <Button x:Name="button" Content="Flap" HorizontalAlignment="Left" Height="82" Margin="10,628,0,0" VerticalAlignment="Top" Width="1260" Click="onClick"/>
     </Grid>
 </Page>
 

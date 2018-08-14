@@ -26,82 +26,70 @@ namespace ProjectProposal
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public partial class ScorePage : Page
-    {
-        private DataContractJsonSerializer ser;
-        private MemoryStream stream1;
-        private Score _score;
+    {        
+        /// <summary>
+        /// Score the player got
+        /// </summary>
+        private int _score;
 
+        /// <summary>
+        /// Constructor for page
+        /// </summary>
         public ScorePage()
         {
-            this.InitializeComponent();
-
-            _score = new Score(Score.score);
-
-            stream1 = new MemoryStream();
-
-            ser = new DataContractJsonSerializer(typeof(Score));
+            this.InitializeComponent();       
         }
 
-        
-
-       
-
+        /// <summary>
+        /// On navigated to event
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            //get score from demoGamePage
+            _score = (int)e.Parameter;          
+        }
+        /// <summary>
+        /// When player hits the exit button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnExit(object sender, RoutedEventArgs e)
         {
+            //exit application
             Application.Current.Exit();
         }
-
-       
-
+        
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            _highScores.Visibility = Visibility.Collapsed;
+
         }
-
-        
-
+        /// <summary>
+        /// When player presses play again
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnNextLevel(object sender, RoutedEventArgs e)
         {
+            //go to demoGamePage
             this.Frame.Navigate(typeof(DemoGamePage));
         }
-
+        /// <summary>
+        /// Event that handles user name input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnSubmit(object sender, RoutedEventArgs e)
         {
-            _score.name = _userName.Text;
-            _btnSubmitString.Visibility = Visibility.Collapsed;
-            _txtBLock1.Text = "Your Score";
+            //Set visability 
+            _btnSubmitString.Visibility = Visibility.Collapsed;           
             _txtBlock2.Visibility = Visibility.Collapsed;
             _userName.Visibility = Visibility.Collapsed;
-
-            _highScores.Visibility = Visibility.Visible;
-
-
-            
-
-            _highScores.Text = $"{_userName.Text}'s score is {Score.score}";
-
-            _score.readData();
-
-           
-            save();
-
-
-        }
-        private void save()
-        {
-            //serialize
-
-
-
-            ser.WriteObject(stream1, _score);
-
-            stream1.Position = 0;
-            StreamReader sr = new StreamReader(stream1);
-            
-
-        }
-
-
-
+            //Set Text
+            _txtBLock1.Text = "Your Score";
+            //Show score
+            _highScores.Text = $"{_userName.Text}'s score is {_score} seconds";
+        }      
     }
 }

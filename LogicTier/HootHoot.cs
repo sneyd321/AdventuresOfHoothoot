@@ -16,70 +16,42 @@ namespace LogicTier
 {
     public class HootHoot
     {
-
-        private Game _game;
-
-        private Canvas _canvas;
-
-        private Ellipse _Elhoothoot;
-
-        private Image _imghoothoot;
-
+        //field variables
         private double _xlocation;
 
         private double _ylocation;
 
-        private Score _score;
+        private Ellipse _hootHoot;
+        
 
         //Constants
         private const float FALLINGSPEED = 12.5f;
-        private const double FLAPSPEED = -45.50f;
-
-        
-
+        private const double FLAPSPEED = 45.50f;
 
         
         /// <summary>
-        /// Constructor for the hoot hoot class
-        /// Takes the hitbox shape, game and canvas objects
+        /// Constructor for the hoot hoot class     
         /// </summary>
-        /// <param name="hoothoot"></param>
-        /// <param name="game"></param>
-        /// <param name="canvas"></param>
-        public HootHoot(Ellipse hoothoot, Game game, Canvas canvas)
+        /// <param name="hoothoot">Ellispe generated in the canvas</param>       
+        public HootHoot(Ellipse hoothoot)
         {
-            _game = game;
-            _canvas = canvas;
-            _xlocation = 150;
-            _ylocation = 150;
-            _Elhoothoot = new Ellipse();
-
-            
-
-            createHootHoot();            
+            //initalize hoothoot
+            _hootHoot = hoothoot;
+            //get current location
+            _xlocation = Canvas.GetLeft(hoothoot);
+            _ylocation = Canvas.GetTop(hoothoot);
+            //Set z index to 1
+            Canvas.SetZIndex(_hootHoot, 1);
+      
         }
-
-        /// <summary>
-        /// Draws Hoothoot at the specified location when called.
-        /// </summary>
-        public void DrawHootHoot()
-        {
-            Canvas.SetLeft(_Elhoothoot, _xlocation);
-            Canvas.SetTop(_Elhoothoot, _ylocation);
-            Canvas.SetLeft(_imghoothoot, _xlocation);
-            Canvas.SetTop(_imghoothoot, _ylocation);
-            //_canvas.Children.Add(imghoothoot);
-        }
-
+ 
         /// <summary>
         /// Method for moving the character upwards on user input
         /// </summary>
         public void Flap()
         {
-            _ylocation += FLAPSPEED/2;
-            DrawHootHoot();
-            _ylocation += FLAPSPEED/2;
-            DrawHootHoot();
+            _ylocation -= FLAPSPEED;
+            Canvas.SetTop(_hootHoot, _ylocation);          
         }
     
         /// <summary>
@@ -88,90 +60,10 @@ namespace LogicTier
         public void fall()
         {
             _ylocation += FALLINGSPEED;
-            DrawHootHoot();
+            Canvas.SetTop(_hootHoot, _ylocation);
         }
 
-        /// <summary>
-        /// Method to create a new HootHoot and put it on the canvas
-        /// </summary>
-        private void createHootHoot()
-        {
-            //create new ellipse and image for hoothoot collisions and appearance
-            _Elhoothoot  = new Ellipse();
-            _imghoothoot = new Image();
-
-            _Elhoothoot.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Left;
-            _Elhoothoot.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
-
-            _Elhoothoot.Width = 45;
-            _Elhoothoot.Height = 50;
-            
-            //Store source of image
-            _imghoothoot.Source = new BitmapImage(new Uri("ms-appx:///Assets/hoothoot.png"));
-
-            //Set the image of hoot hoot from the uri above
-            ImageBrush _hoothootBitmapImage = new ImageBrush();
-            _hoothootBitmapImage.ImageSource = _imghoothoot.Source;
-
-
-            //Add the Items onto the canvas
-            _canvas.Children.Add(_imghoothoot);
-            _canvas.Children.Add(_Elhoothoot);
-
-            //Set their initial locations
-            Canvas.SetLeft(_Elhoothoot, 200);
-            Canvas.SetTop(_Elhoothoot, 600);
-
-        }
- 
-
-        
-
-        /// <summary>
-        /// Checks if hoothoot has collided with an obsticle
-        /// </summary>
-        public void OnHoothootDies()
-        {
-
-            double deadSpot = Canvas.GetLeft(_game.map.mapBackground);
-
-
-            
-
-            for (int i = 0; i < _game.map.obsticleListOnTop.Count; i++)
-            {
-                _game.map.obsticleListOnTop[i].Collision(_Elhoothoot, _game.map.obsticleListOnTop[i].getObsticle, deadSpot);
-                
-            }
-
-            for (int i = 0; i < _game.map.topPipeTop.Count; i++)
-            {
-                _game.map.topPipeTop[i].Collision(_Elhoothoot, _game.map.topPipeTop[i].getObsticle, deadSpot);
-                
-            }
-
-
-            for (int i = 0; i < _game.map.obsticleListOnBottom.Count; i++)
-            {
-                _game.map.obsticleListOnBottom[i].Collision(_Elhoothoot, _game.map.obsticleListOnBottom[i].getObsticle, deadSpot);
-                
-            }
-
-            for (int i = 0; i < _game.map.bottomPipeTop.Count; i++)
-            {
-                _game.map.bottomPipeTop[i].Collision(_Elhoothoot, _game.map.bottomPipeTop[i].getObsticle, deadSpot);
-                
-            }
-
-            
-            
-
-
-        }
-
-
-
-        
+       
 
     }
 }

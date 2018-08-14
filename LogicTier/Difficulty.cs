@@ -16,6 +16,8 @@ namespace ProjectProposal
 
         public static int s_difficultyChoice;
 
+        public static int s_obstacleHeight;
+
         
 
         public Difficulty() 
@@ -26,25 +28,23 @@ namespace ProjectProposal
 
         public int mapSpeed 
         {
-            get
-            {
-                return s_mapSpeed;
-            }
-            
+            get;
         }
 
         public int difficultyChoice
         {
-            get
-            {
-                return s_difficultyChoice;
-            }
-
-            set
-            {
-                s_difficultyChoice = value;
-            }
+            get;
+            set;          
         }
+
+        public int obstacleHeight
+        {
+            get;
+            set;
+        }
+            
+
+
         /// <summary>
         /// sets values based on the selected difficulties
         /// </summary>
@@ -56,6 +56,7 @@ namespace ProjectProposal
                 
                 s_mapSpeed = 10;
                 s_obsticleDistance = 400;
+                s_obstacleHeight = 100;
                 
             }
             //if choice is normal
@@ -63,6 +64,7 @@ namespace ProjectProposal
             {
                 s_mapSpeed = 25;
                 s_obsticleDistance = 200;
+                s_obstacleHeight = 150;
 
 
             }
@@ -71,6 +73,7 @@ namespace ProjectProposal
             {
                 s_mapSpeed = 50;
                 s_obsticleDistance = 100;
+                s_obstacleHeight = 200;
 
             }
         }
