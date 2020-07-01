@@ -46,6 +46,10 @@ namespace ProjectProposal
 
         private DateTime endTime;
 
+        private NavigationContainer container;
+
+        
+
         /// <summary>
         /// Constructor for game page
         /// </summary>
@@ -64,46 +68,71 @@ namespace ProjectProposal
 
         }
 
-       /// <summary>
-       /// Creates map, places obstacles and set height of each obstacle
-       /// </summary>
-       /// <param name="left">Sets the position of the map</param>
-       /// <returns>Returns a rectangle with all obstacles on it</returns>
-        public Rectangle createMap(double left)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //Create new map object 
-            Map m = new Map();
-            //set size of the map
-            Rectangle map = m.createMap(_canvas.Width, _canvas.ActualHeight);
-            //set the colour of the map to colour selcted by the user
-            map.Fill = MainPage.s_colour;
-            //add the map to the canvis
-            _canvas.Children.Add(map);
-            //set the left position of the map 
-            Canvas.SetLeft(map, left);
-            //set the top position of the map
-            Canvas.SetTop(map, 0);
-            //set the initial space between the edge of the map the first obstacle
-            double initSpacer = 100 + left;
-            //set the distance between each obsticles
-            double range = map.ActualWidth / 250;
-            
-            for (int i = 0; i < range; i++)
+            if (e.Parameter is NavigationContainer)
             {
-                //get a random height
-                double random = _randomizer.Next(Difficulty.s_obstacleHeight);
-                //Create top pipes
-                createTopPipe(m, initSpacer, random);
-                //Create bottom pipes
-                createBottomPipe(m, initSpacer, random);
-                //Set increase the left position of the spacer
-                initSpacer += _spacer;
+                container = (NavigationContainer)e.Parameter;
+                BackgroundFactory backgroundFactory = (BackgroundFactory)AbstractFactory.getFactory(FactoryType.Background);
+                GradientBackground background = backgroundFactory.GetBackground(container.BackgroundType);
+                _canvas.Background = background.getColour();
+
             }
-            //return map
-            return map;          
+
+
+
+            base.OnNavigatedTo(e);
         }
 
-       
+        /// <summary>
+        /// Creates map, places obstacles and set height of each obstacle
+        /// </summary>
+        /// <param name="left">Sets the position of the map</param>
+        /// <returns>Returns a rectangle with all obstacles on it</returns>
+        public Rectangle createMap(double left)
+        {
+            Map map = new Map(_canvas.Width, _canvas.ActualHeight);
+            _canvas.Children.Add(map.getRectangle());
+            Canvas.SetLeft(map.getRectangle(), left);
+            Canvas.SetTop(map.getRectangle(), 0);
+            double initSpacer = 100 + left;
+            double range = map.getRectangle().ActualWidth / 250;
+            DifficultyFactory factory = (DifficultyFactory)AbstractFactory.getFactory(FactoryType.Difficulty);
+            Difficulty difficulty = factory.GetDifficulty(container.DifficultyType);
+            for (int i = 0; i <= range; i++)
+            {
+                double random = _randomizer.Next(difficulty.getObsticleHeight());
+                Obstacle topObsticle = new Obstacle(random);
+                placeObsticleOnCanvas(topObsticle, initSpacer, 0, random);
+                Obstacle bottomObsticle = new Obstacle(random);
+                placeObsticleOnCanvas(bottomObsticle, initSpacer, _canvas.Height - bottomObsticle.getBottom().Height, _canvas.Height - bottomObsticle.getBottom().Height - bottomObsticle.getTop().Height);
+
+                initSpacer += _spacer;
+            }
+           
+            
+            return map.getRectangle();          
+        }
+
+
+        private void placeObsticleOnCanvas(Obstacle obsticle, double spacer, double bottomPipeTop, double topPipeTop)
+        {
+            _canvas.Children.Add(obsticle.getBottom());
+            _obstacleList.Add(obsticle.getBottom());
+            _canvas.Children.Add(obsticle.getTop());
+            _obstacleList.Add(obsticle.getTop());
+
+            Canvas.SetLeft(obsticle.getBottom(), spacer);
+            Canvas.SetTop(obsticle.getBottom(), bottomPipeTop);
+            Canvas.SetZIndex(obsticle.getBottom(), 1);
+
+            Canvas.SetLeft(obsticle.getTop(), (spacer - obsticle.getTop().Height / 2));
+            Canvas.SetTop(obsticle.getTop(), topPipeTop);
+            Canvas.SetZIndex(obsticle.getTop(), 1);
+
+        }
+
+        /*
         /// <summary>
         /// Create the pipes on the top of the map
         /// </summary>
@@ -112,16 +141,7 @@ namespace ProjectProposal
         /// <param name="height">hieght for each obstacles</param>
         private void createTopPipe(Map map, double spacer, double height)
         {
-            //get obstacle from map and set height and width
-            Rectangle basePipe = map.getObstacle(75, height);
-            //add to the canvas
-            _canvas.Children.Add(basePipe);
-            //set the z index to 1
-            Canvas.SetZIndex(basePipe, 1);
-            //Set the left position of the base pipe
-            Canvas.SetLeft(basePipe, spacer);
-            //Set the top position of the base pipe
-            Canvas.SetTop(basePipe, 0);
+            
             //add the obstacle to the list
             _obstacleList.Add(basePipe);
             //get another from the map
@@ -173,6 +193,7 @@ namespace ProjectProposal
             //add to the list
             _obstacleList.Add(topPipe);
         }
+        */
 
         /// <summary>
         /// Starts dispatch timer and onTimerTick event
@@ -203,7 +224,9 @@ namespace ProjectProposal
             //Get current position of the map
             double mapLeft = Canvas.GetLeft(map);
             //decrease left position
-            mapLeft -= Difficulty.s_mapSpeed;
+            DifficultyFactory factory = (DifficultyFactory)AbstractFactory.getFactory(FactoryType.Difficulty);
+            Difficulty difficulty = factory.GetDifficulty(container.DifficultyType);
+            mapLeft -= difficulty.getMapSpeed();
             //reset to new position
             Canvas.SetLeft(map, mapLeft);
         }
@@ -225,6 +248,8 @@ namespace ProjectProposal
             //move map2 left
             moveMapLeft(_map2);
             //move all obstacles left
+            DifficultyFactory factory = (DifficultyFactory)AbstractFactory.getFactory(FactoryType.Difficulty);
+            Difficulty difficulty = factory.GetDifficulty(container.DifficultyType);
             for (int i = 0; i < _obstacleList.Count; i++)
             {
                 try
@@ -232,7 +257,7 @@ namespace ProjectProposal
                     //get current position of obstacle
                     double obstacleLeft = Canvas.GetLeft(_obstacleList[i]);
                     //decrease left position
-                    obstacleLeft -= Difficulty.s_mapSpeed;
+                    obstacleLeft -= difficulty.getMapSpeed();
                     //reset left position
                     Canvas.SetLeft(_obstacleList[i], obstacleLeft);
                     //create a hitbox around all top obsticles
@@ -285,8 +310,8 @@ namespace ProjectProposal
             //if player hits yes
             if ((int)result.Id == 0)
             {
-                //got to score page
-                this.Frame.Navigate(typeof(ScorePage), score);
+                this.Frame.Navigate(typeof(MainPage), container);
+
 
             }
         }
@@ -335,7 +360,7 @@ namespace ProjectProposal
             //starts the timer
             StartTimer(sender, e);
             //set the canvas background
-            _canvas.Background = MainPage.s_colour;
+            //_canvas.Background = MainPage.s_colour;
             //define map1
             _map = createMap(0);
             //define map2
